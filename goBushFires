@@ -1,0 +1,5 @@
+cd /home/drews/GoogleEarth/
+python3 bushFires.py maxHeight=4000
+echo
+#python3 bushFires.py maxHeight=4000 dates=20210531,20210602, hours=22,22 latBounds=38.0,41.0 lonBounds=-107.0,-104.0 runMode=manual
+#
