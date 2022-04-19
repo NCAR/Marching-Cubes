@@ -1,0 +1,3 @@
+cd /home/drews/GoogleEarth/
+python3 bushFires.py model=WRF-Chem species=co_fire latBounds=39.0,41.0 lonBounds=-109.05,-102.05 dates=20201014,20201026 hours=00,23 dataDir=/webt/drews/GoogleEarth/EastTroublesomeFire2020/ runMode=manual maxHeight=20000
+echo

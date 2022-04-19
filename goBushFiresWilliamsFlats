@@ -1,0 +1,4 @@
+cd /home/drews/GoogleEarth/
+#python3 bushFires.py model=WRF-Chem species=co_fire latBounds=46.93,48.93 lonBounds=-119.0,-116.0 dates=20190803,20190810 hours=00,23 dataDir=/webt/drews/GoogleEarth/WilliamsFlatsFire2019/ runMode=manual maxHeight=20000 thresholds=100,200,400
+python3 bushFires.py model=WRF-Chem species=co_fire latBounds=46.93,48.93 lonBounds=-119.0,-105.8 dates=20190808,20190809 hours=00,04 dataDir=/webt/drews/GoogleEarth/WilliamsFlatsFire2019/ runMode=manual maxHeight=20000 thresholds=50,100,200 airplane=DC-8,firex-aq/WilliamsFlats/FIREXAQ-MetNav_DC8_20190808_R1.ict
+echo
