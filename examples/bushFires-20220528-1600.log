@@ -1,0 +1,1776 @@
+bushFires.py
+Start time: 2022-05-28 16:00:02.379285 Local
+argPair = bushFires.py
+argPair = maxHeight=4000
+runMode = auto
+model = wrf-chem
+species = ['o3']
+maxHeight = 4000.0
+latBounds = [25.0, 50.0]
+lonBounds = [-130.0, -60.0]
+dates = None
+hours = [0, 0]
+dataDir = None
+Date range is 2022-05-27 22:00:02.379490 to 2022-05-29 22:00:02.379490
+hourStride = 1.0
+Chemical thresholds:
+	o3 [67, 70, 75] ppbv
+Run auto from 2022-05-27 22:00:02.379490 to 2022-05-29 22:00:02.379490
+findMaxChemValue():
+	Frame time 2022-05-27 22:00:00
+	Frame file /WRF-Chem/20220527/wrf/wrfout_hourly_d01_2022-05-27_22:00:00
+	New max 0.07174861431121826 ppmv found at [29.531403, -94.1521] on 2022-05-27 22:00:00
+	Frame time 2022-05-27 23:00:00
+	Frame file /WRF-Chem/20220527/wrf/wrfout_hourly_d01_2022-05-27_23:00:00
+	Frame time 2022-05-28 00:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_00:00:00
+	Frame time 2022-05-28 01:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_01:00:00
+	Frame time 2022-05-28 02:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_02:00:00
+	Frame time 2022-05-28 03:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_03:00:00
+	Frame time 2022-05-28 04:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_04:00:00
+	Frame time 2022-05-28 05:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_05:00:00
+	Frame time 2022-05-28 06:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_06:00:00
+	Frame time 2022-05-28 07:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_07:00:00
+	Frame time 2022-05-28 08:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_08:00:00
+	Frame time 2022-05-28 09:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_09:00:00
+	Frame time 2022-05-28 10:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_10:00:00
+	Frame time 2022-05-28 11:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_11:00:00
+	Frame time 2022-05-28 12:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_12:00:00
+	Frame time 2022-05-28 13:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_13:00:00
+	Frame time 2022-05-28 14:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_14:00:00
+	Frame time 2022-05-28 15:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_15:00:00
+	Frame time 2022-05-28 16:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_16:00:00
+	New max 0.07308733463287354 ppmv found at [49.95173, -115.17084] on 2022-05-28 16:00:00
+	Frame time 2022-05-28 17:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_17:00:00
+	New max 0.08324285596609116 ppmv found at [50.08533, -115.04068] on 2022-05-28 17:00:00
+	Frame time 2022-05-28 18:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_18:00:00
+	New max 0.08940882980823517 ppmv found at [50.11011, -114.87131] on 2022-05-28 18:00:00
+	Frame time 2022-05-28 19:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_19:00:00
+	Frame time 2022-05-28 20:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_20:00:00
+	Frame time 2022-05-28 21:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_21:00:00
+	Frame time 2022-05-28 22:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_22:00:00
+	Frame time 2022-05-28 23:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_23:00:00
+	Frame time 2022-05-29 00:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_00:00:00
+	Frame time 2022-05-29 01:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_01:00:00
+	Frame time 2022-05-29 02:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_02:00:00
+	Frame time 2022-05-29 03:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_03:00:00
+	Frame time 2022-05-29 04:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_04:00:00
+	Frame time 2022-05-29 05:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_05:00:00
+	Frame time 2022-05-29 06:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_06:00:00
+	Frame time 2022-05-29 07:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_07:00:00
+	Frame time 2022-05-29 08:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_08:00:00
+	Frame time 2022-05-29 09:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_09:00:00
+	Frame time 2022-05-29 10:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_10:00:00
+	Frame time 2022-05-29 11:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_11:00:00
+	Frame time 2022-05-29 12:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_12:00:00
+	Frame time 2022-05-29 13:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_13:00:00
+	Frame time 2022-05-29 14:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_14:00:00
+	Frame time 2022-05-29 15:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_15:00:00
+	Frame time 2022-05-29 16:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_16:00:00
+	Frame time 2022-05-29 17:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_17:00:00
+	Frame time 2022-05-29 18:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_18:00:00
+	New max 0.09207901358604431 ppmv found at [34.35448, -84.72446] on 2022-05-29 18:00:00
+	Frame time 2022-05-29 19:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_19:00:00
+	New max 0.09308130294084549 ppmv found at [34.46292, -84.70413] on 2022-05-29 19:00:00
+	Frame time 2022-05-29 20:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_20:00:00
+	New max 0.09386877715587616 ppmv found at [34.58815, -84.81555] on 2022-05-29 20:00:00
+	Frame time 2022-05-29 21:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_21:00:00
+	New max 0.10438822209835052 ppmv found at [42.393578, -106.23773] on 2022-05-29 21:00:00
+	Frame time 2022-05-29 22:00:00
+	Frame file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_22:00:00
+	Maximum value 0.10438822209835052 ppmv occurred at 2022-05-29 21:00:00
+Maximum surface value of 0.10438822209835052 ppmv occurred at 42.393577575683594 N, -106.23773193359375 W on 2022-05-29 21:00:00
+Auto domain is lats [41.04611081319707, 43.74104433817012] and lons [-107.58519869608027, -104.89026517110723]
+Maximum chemical value is 104.38822209835052 ppbv
+Chemical: o3
+
+Frame time: 2022-05-27 22:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220527/wrf/wrfout_hourly_d01_2022-05-27_22:00:00
+Actual date = 2022-05-27T22:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.177881   2.1941278  2.222587   2.267436   2.3370554  2.4277213
+  2.535754   2.665876   2.8187768  2.9954112  3.2101755  3.4240363
+  3.605475   3.7665915  3.911278   4.0292187  4.124562   4.245016
+  4.4109073  4.6446466  5.018572   5.620024   6.39661    7.2267756
+  8.065543   8.8839245  9.550753  10.035845  10.429879  10.7574
+ 11.038812  11.279289  11.495793  11.729747  12.039882  12.4877
+ 13.104763  13.932251  14.968115  16.203552  17.751833  19.701427 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 59.42304611206055 ppbv occurs at [14, 28, 8]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 0   triangle count = 0   placemark count = 0
+
+Frame time: 2022-05-27 23:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220527/wrf/wrfout_hourly_d01_2022-05-27_23:00:00
+Actual date = 2022-05-27T23:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1778724  2.1940813  2.2224727  2.267213   2.336663   2.4271069
+  2.5348704  2.664658   2.8171523  2.9932945  3.2074296  3.4206414
+  3.6015131  3.7621193  3.9063501  4.023924   4.1189804  4.2390914
+  4.404565   4.6379046  5.011751   5.6139526  6.3921824  7.2222357
+  8.059933   8.878424   9.545133  10.029901  10.423924  10.751715
+ 11.0333185 11.2738    11.490117  11.72377   12.034289  12.484513
+ 13.104981  13.931957  14.963128  16.197063  17.748343  19.696426 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 62.850406646728516 ppbv occurs at [14, 9, 0]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 0   triangle count = 0   placemark count = 0
+
+Frame time: 2022-05-28 00:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_00:00:00
+Actual date = 2022-05-28T00:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1778111  2.1938002  2.221835   2.266057   2.3347592  2.4243042
+  2.5310965  2.6598532  2.8113122  2.9864464  3.199579   3.412007
+  3.5924113  3.75273    3.8967762  4.014229   4.1092052  4.229233
+  4.39458    4.6276     5.000589   5.6019735  6.380803   7.212361
+  8.051583   8.8730345  9.54347   10.030687  10.4258995 10.754119
+ 11.035799  11.276178  11.492549  11.726511  12.035883  12.483174
+ 13.101655  13.927886  14.961812  16.197073  17.74427   19.69349  ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 84.47417449951172 ppbv occurs at [10, 16, 7]
+Creating isoSurface at 67 ppbv.
+Note: polygon beginning at x:-107.734267 y:41.692066 z:3.712343 val:0.000000 has 8 points.
+For each atmospheric layer, we have:
+	0 has 4 triangles: 
+	1 has 304 triangles: 
+The isosurface passed through 123 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220528-0000-67ppbv-surface.dae with 4 triangles.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220528-0000-67ppbv-trop.dae with 304 triangles.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+	1 has 24 triangles: 
+The isosurface passed through 24 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220528-0000-70ppbv-trop.dae with 24 triangles.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+	1 has 8 triangles: 
+The isosurface passed through 8 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220528-0000-75ppbv-trop.dae with 8 triangles.
+cell count = 155   triangle count = 340   placemark count = 4
+
+Frame time: 2022-05-28 01:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_01:00:00
+Actual date = 2022-05-28T01:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1778395  2.1939292  2.222125   2.2665737  2.3355863  2.425476
+  2.532598   2.6616566  2.8134155  2.9889448  3.202561   3.4153686
+  3.5959668  3.7563472  3.900369   4.017756   4.112643   4.2325096
+  4.3975735  4.630142   5.0024085  5.6022596  6.3795543  7.211597
+  8.052709   8.8754225  9.546292  10.033707  10.42887   10.756892
+ 11.038587  11.279259  11.495914  11.729891  12.039471  12.486314
+ 13.103811  13.930404  14.963708  16.201399  17.75279   19.701115 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 73.1380844116211 ppbv occurs at [14, 10, 3]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+	1 has 428 triangles: 
+The isosurface passed through 119 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220528-0100-67ppbv-trop.dae with 428 triangles.
+Creating isoSurface at 70 ppbv.
+Note: polygon beginning at x:-107.475422 y:41.717830 z:3.561339 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 174 triangles: 
+The isosurface passed through 52 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220528-0100-70ppbv-trop.dae with 174 triangles.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 326   triangle count = 942   placemark count = 6
+
+Frame time: 2022-05-28 02:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_02:00:00
+Actual date = 2022-05-28T02:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1778135  2.1938353  2.2219496  2.2663007  2.3351707  2.4248722
+  2.5317812  2.6606448  2.8122633  2.9876611  3.2011092  3.413755
+  3.5942295  3.7545252  3.898492   4.0158463  4.110711   4.230564
+  4.3956666  4.628485   5.0016265  5.6033745  6.3827715  7.215713
+  8.056654   8.878651   9.54867   10.0356865 10.43083   10.758901
+ 11.040526  11.281055  11.497702  11.732109  12.042918  12.490788
+ 13.106319  13.92925   14.961688  16.19761   17.747938  19.697971 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 72.04441833496094 ppbv occurs at [14, 10, 6]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+	1 has 378 triangles: 
+The isosurface passed through 109 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220528-0200-67ppbv-trop.dae with 378 triangles.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+	1 has 166 triangles: 
+The isosurface passed through 50 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220528-0200-70ppbv-trop.dae with 166 triangles.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 485   triangle count = 1486   placemark count = 8
+
+Frame time: 2022-05-28 03:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_03:00:00
+Actual date = 2022-05-28T03:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1777802  2.1937122  2.2217207  2.2659783  2.3347895  2.4245193
+  2.5316005  2.6607585  2.8126545  2.988207   3.2017171  3.4143732
+  3.594817   3.7550514  3.8989348  4.0162086  4.1110063  4.230782
+  4.395804   4.628535   5.0013814  5.602097   6.3801966  7.212508
+  8.053924   8.877008   9.548408  10.037297  10.434265  10.763814
+ 11.046477  11.287608  11.504495  11.73875   12.048737  12.494564
+ 13.106631  13.926453  14.9592    16.1951    17.738838  19.679092 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 70.95207977294922 ppbv occurs at [14, 9, 9]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+	1 has 406 triangles: 
+The isosurface passed through 120 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220528-0300-67ppbv-trop.dae with 406 triangles.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+	1 has 88 triangles: 
+The isosurface passed through 30 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220528-0300-70ppbv-trop.dae with 88 triangles.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 635   triangle count = 1980   placemark count = 10
+
+Frame time: 2022-05-28 04:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_04:00:00
+Actual date = 2022-05-28T04:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1777809  2.1937058  2.2217042  2.2659855  2.3349729  2.425033
+  2.5324166  2.6617594  2.8137329  2.9892843  3.20273    3.4152677
+  3.5955737  3.7557166  3.8995998  4.016949   4.11188    4.231896
+  4.3973184  4.630675   5.0046372  5.607359   6.3873734  7.2202287
+  8.060953   8.883637   9.555193  10.044001  10.44097   10.770676
+ 11.05357   11.294886  11.511825  11.74598   12.055613  12.500419
+ 13.110444  13.927723  14.955995  16.187176  17.734413  19.682459 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 69.8908920288086 ppbv occurs at [13, 8, 12]
+Creating isoSurface at 67 ppbv.
+Note: polygon beginning at x:-105.376978 y:41.686406 z:3.730258 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 438 triangles: 
+The isosurface passed through 138 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220528-0400-67ppbv-trop.dae with 438 triangles.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 773   triangle count = 2418   placemark count = 11
+
+Frame time: 2022-05-28 05:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_05:00:00
+Actual date = 2022-05-28T05:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1777518  2.1935792  2.2214346  2.2655761  2.3343956  2.4242532
+  2.5314517  2.6606274  2.8124354  2.9878118  3.2010703  3.4134622
+  3.5936656  3.7536757  3.8973572  4.01448    4.109179   4.2288656
+  4.3937984  4.6264396  4.9993153  5.601004   6.3807955  7.214798
+  8.057195   8.880645   9.552652  10.042158  10.43953   10.769277
+ 11.052102  11.293376  11.510213  11.7438345 12.052018  12.494716
+ 13.102811  13.918027  14.946378  16.181087  17.732553  19.681667 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 68.7549819946289 ppbv occurs at [11, 8, 13]
+Creating isoSurface at 67 ppbv.
+Note: polygon beginning at x:-106.005807 y:41.627339 z:3.247192 val:0.000000 has 9 points.
+For each atmospheric layer, we have:
+	1 has 154 triangles: 
+The isosurface passed through 49 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220528-0500-67ppbv-trop.dae with 154 triangles.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 822   triangle count = 2572   placemark count = 12
+
+Frame time: 2022-05-28 06:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_06:00:00
+Actual date = 2022-05-28T06:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1777365  2.193503   2.2212427  2.2652013  2.3337977  2.4234571
+  2.530472   2.6594398  2.811056   2.9863012  3.1994421  3.41171
+  3.5918238  3.7517998  3.8954968  4.0126505  4.107379   4.2271295
+  4.392237   4.6252785  4.998682   5.6001205  6.3786836  7.2114687
+  8.053651   8.877979   9.550556  10.039776  10.436684  10.766034
+ 11.048544  11.289619  11.506367  11.740041  12.048431  12.490723
+ 13.096595  13.908706  14.935146  16.17241   17.726274  19.675392 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 67.52958679199219 ppbv occurs at [11, 8, 15]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+	1 has 36 triangles: 
+The isosurface passed through 16 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220528-0600-67ppbv-trop.dae with 36 triangles.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 838   triangle count = 2608   placemark count = 13
+
+Frame time: 2022-05-28 07:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_07:00:00
+Actual date = 2022-05-28T07:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1777184  2.1933994  2.221003   2.2647722  2.3331208  2.4225445
+  2.5293627  2.6581674  2.809604   2.9845917  3.197431   3.4094734
+  3.589461   3.7493522  3.8929918  4.010125   4.104865   4.2246256
+  4.3896666  4.622361   4.9950004  5.5958004  6.3741884  7.206489
+  8.047279   8.869741   9.540938  10.02975   10.426909  10.756707
+ 11.039611  11.280959  11.497919  11.731915  12.040992  12.484327
+ 13.09009   13.901655  14.930346  16.173807  17.729637  19.67207  ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 66.19316864013672 ppbv occurs at [11, 10, 15]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 838   triangle count = 2608   placemark count = 13
+
+Frame time: 2022-05-28 08:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_08:00:00
+Actual date = 2022-05-28T08:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1777086  2.1933653  2.2209601  2.2648225  2.3333461  2.4229195
+  2.5298488  2.6587272  2.8102212  2.9853075  3.1982863  3.4104476
+  3.5905082  3.7504497  3.8941417  4.0113173  4.106075   4.2258234
+  4.3907847  4.6232915  4.9954796  5.595303   6.372358   7.203647
+  8.044357   8.867517   9.5393305 10.028192  10.425081  10.754663
+ 11.037508  11.278882  11.495874  11.729777  12.038309  12.480603
+ 13.086797  13.900817  14.931944  16.177     17.733454  19.674717 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 64.12505340576172 ppbv occurs at [9, 11, 16]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 838   triangle count = 2608   placemark count = 13
+
+Frame time: 2022-05-28 09:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_09:00:00
+Actual date = 2022-05-28T09:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.177722   2.193426   2.2210617  2.2648413  2.333197   2.4226277
+  2.529414   2.6581192  2.8094063  2.9842637  3.1970217  3.4090068
+  3.5889304  3.7487457  3.8923006  4.0093446  4.103982   4.223573
+  4.388334   4.6205845  4.992433   5.591331   6.3674817  7.199328
+  8.041057   8.864466   9.53608   10.024698  10.42146   10.750939
+ 11.033641  11.274855  11.491679  11.725296  12.033162  12.47439
+ 13.081017  13.898532  14.931948  16.17389   17.728268  19.67092  ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 62.416446685791016 ppbv occurs at [10, 12, 17]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 838   triangle count = 2608   placemark count = 13
+
+Frame time: 2022-05-28 10:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_10:00:00
+Actual date = 2022-05-28T10:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1777005  2.1933687  2.2209938  2.264707   2.3326614  2.4212725
+  2.52706    2.6547966  2.8053265  2.979735   3.192268   3.4041674
+  3.5840895  3.7439418  3.8875613  4.0046763  4.099391   4.2191024
+  4.38405    4.6166086  4.9889927  5.589039   6.3667135  7.198976
+  8.040047   8.863042   9.534953  10.024254  10.421497  10.751198
+ 11.033965  11.275142  11.491841  11.725203  12.032639  12.473212
+ 13.078326  13.893941  14.927236  16.171402  17.727129  19.668056 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 60.26456069946289 ppbv occurs at [12, 13, 19]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 838   triangle count = 2608   placemark count = 13
+
+Frame time: 2022-05-28 11:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_11:00:00
+Actual date = 2022-05-28T11:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1776934  2.1933208  2.2208598  2.2644613  2.3323414  2.4209836
+  2.526881   2.654751   2.8054028  2.9798894  3.192516   3.4045904
+  3.5847497  3.744868   3.8887625  4.006094   4.100953   4.2207913
+  4.3858213  4.6183643  4.99062    5.590213   6.366519   7.1973066
+  8.038242   8.861981   9.534315  10.023492  10.420468  10.749926
+ 11.032534  11.273663  11.490392  11.723777  12.031121  12.471745
+ 13.077659  13.893651  14.924396  16.165369  17.721436  19.66705  ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 59.52976989746094 ppbv occurs at [12, 16, 21]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 838   triangle count = 2608   placemark count = 13
+
+Frame time: 2022-05-28 12:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_12:00:00
+Actual date = 2022-05-28T12:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1776648  2.1931849  2.2205586  2.2639606  2.3316116  2.4200027
+  2.525593   2.6530151  2.80301    2.9767287  3.1886716  3.400278
+  3.5801826  3.7401516  3.8839047  4.001099   4.0958304  4.2154913
+  4.3802876  4.612629   4.9848523  5.584439   6.360383   7.190628
+  8.031778   8.857075   9.530987  10.020633  10.417484  10.746723
+ 11.029151  11.270061  11.486494  11.719552  12.026718  12.467684
+ 13.074056  13.889174  14.918257  16.159159  17.715961  19.663261 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 59.101097106933594 ppbv occurs at [14, 17, 22]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 838   triangle count = 2608   placemark count = 13
+
+Frame time: 2022-05-28 13:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_13:00:00
+Actual date = 2022-05-28T13:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1777139  2.1933124  2.220716   2.2641377  2.331837   2.4202738
+  2.5258825  2.6533177  2.803345   2.97703    3.188763   3.400184
+  3.580109   3.7401655  3.8839617  4.001162   4.095898   4.2155924
+  4.3804693  4.612865   4.9848123  5.583293   6.357985   7.188046
+  8.029678   8.855299   9.529317  10.019004  10.415819  10.744906
+ 11.027162  11.267936  11.484242  11.717124  12.024244  12.465767
+ 13.073139  13.889294  14.919569  16.159483  17.713268  19.66213  ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 57.9601936340332 ppbv occurs at [14, 20, 22]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 838   triangle count = 2608   placemark count = 13
+
+Frame time: 2022-05-28 14:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_14:00:00
+Actual date = 2022-05-28T14:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.17776    2.1935232  2.2211425  2.2646909  2.3323948  2.4208112
+  2.5264382  2.6538749  2.8037984  2.9772058  3.1885576  3.3996603
+  3.57938    3.7393382  3.8831334  4.0003753  4.095153   4.2148757
+  4.3797097  4.6118207  4.9829097  5.5801797  6.354216   7.1838017
+  8.024839   8.850228   9.52412   10.013583  10.410113  10.738885
+ 11.020806  11.261296  11.47744   11.710329  12.017835  12.460745
+ 13.070867  13.889614  14.91937   16.156973  17.708317  19.657166 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 55.2755012512207 ppbv occurs at [14, 21, 22]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 838   triangle count = 2608   placemark count = 13
+
+Frame time: 2022-05-28 15:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_15:00:00
+Actual date = 2022-05-28T15:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1777956  2.1936967  2.2215486  2.265446   2.3336003  2.4223726
+  2.528166   2.6556094  2.8054035  2.9788284  3.190701   3.4024935
+  3.5825632  3.7425394  3.8862112  4.0033255  4.098004   4.2176204
+  4.382349   4.6144176  4.9855537  5.582396   6.3554745  7.184597
+  8.025208   8.849264   9.521769  10.010518  10.406814  10.735611
+ 11.017636  11.258175  11.474238  11.707029  12.014877  12.45902
+ 13.070732  13.889985  14.920217  16.159422  17.711449  19.6556   ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 53.17318344116211 ppbv occurs at [13, 20, 22]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 838   triangle count = 2608   placemark count = 13
+
+Frame time: 2022-05-28 16:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_16:00:00
+Actual date = 2022-05-28T16:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1778164  2.1937962  2.2217817  2.2658834  2.3343453  2.4235084
+  2.5297556  2.6577327  2.808123   2.9818807  3.1932933  3.4041307
+  3.5834415  3.7429643  3.886357   4.0032845  4.097822   4.2172604
+  4.38175    4.6135163  4.9841614  5.5801125  6.3522487  7.1810513
+  8.0216255  8.845142   9.516835  10.004981  10.400851  10.729306
+ 11.011079  11.251531  11.46774   11.700976  12.009508  12.454573
+ 13.068145  13.889791  14.921354  16.162016  17.715355  19.657602 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 52.246578216552734 ppbv occurs at [14, 4, 21]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 838   triangle count = 2608   placemark count = 13
+
+Frame time: 2022-05-28 17:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_17:00:00
+Actual date = 2022-05-28T17:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.17783    2.1938598  2.2219267  2.2661495  2.334793   2.4241862
+  2.5307002  2.65899    2.8097334  2.983868   3.1955855  3.4064252
+  3.5853434  3.7443235  3.8872626  4.003904   4.0982704  4.2175245
+  4.3817773  4.613151   4.9829316  5.577791   6.350052   7.179756
+  8.02012    8.842507   9.513336  10.001154  10.396895  10.7252865
+ 11.006984  11.247294  11.463329  11.696655  12.006184  12.453108
+ 13.067596  13.889122  14.922021  16.164747  17.718401  19.658659 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 51.682395935058594 ppbv occurs at [14, 17, 22]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 838   triangle count = 2608   placemark count = 13
+
+Frame time: 2022-05-28 18:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_18:00:00
+Actual date = 2022-05-28T18:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1778378  2.1938984  2.2220187  2.2663212  2.3350825  2.4246202
+  2.5312965  2.6597679  2.8107088  2.9850495  3.1969829  3.4079933
+  3.5869904  3.7459233  3.8886404  4.00497    4.0990105  4.217818
+  4.3814383  4.6119895  4.9809847  5.576265   6.34951    7.1790767
+  8.018602   8.840187   9.510416   9.997864  10.39346   10.721782
+ 11.003373  11.243556  11.459468  11.692638  12.002046  12.449717
+ 13.066186  13.88998   14.924376  16.16852   17.722412  19.660967 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 51.54682540893555 ppbv occurs at [14, 25, 22]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 838   triangle count = 2608   placemark count = 13
+
+Frame time: 2022-05-28 19:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_19:00:00
+Actual date = 2022-05-28T19:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1778367  2.1938934  2.2220056  2.2662961  2.3350399  2.4245543
+  2.5312042  2.6596453  2.8105521  2.984855   3.1967423  3.4077077
+  3.5866668  3.745568   3.8882558  4.0045624  4.0985847  4.21737
+  4.3809643  4.611488   4.980437   5.5755634  6.34821    7.17672
+  8.015552   8.8370905  9.507357   9.994632  10.389902  10.717861
+ 10.999166  11.2392235 11.455191  11.688632  11.998737  12.447928
+ 13.066177  13.891415  14.92738   16.171743  17.724325  19.662605 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 49.1552619934082 ppbv occurs at [14, 5, 18]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 838   triangle count = 2608   placemark count = 13
+
+Frame time: 2022-05-28 20:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_20:00:00
+Actual date = 2022-05-28T20:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1778326  2.1938899  2.2220204  2.2663553  2.3351798  2.4248092
+  2.531601   2.6602156  2.8113272  2.9858673  3.198047   3.4093041
+  3.58851    3.747625   3.8905013  4.006957   4.1010957  4.220023
+  4.383805   4.6145706  4.9842706  5.5802016  6.352815   7.1804113
+  8.017831   8.838019   9.507286   9.993857  10.388591  10.716236
+ 10.997412  11.237489  11.453655  11.687642  11.998719  12.44899
+ 13.068767  13.896015  14.932107  16.175333  17.728     19.668612 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 49.39179229736328 ppbv occurs at [14, 7, 21]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 838   triangle count = 2608   placemark count = 13
+
+Frame time: 2022-05-28 21:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_21:00:00
+Actual date = 2022-05-28T21:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.177834   2.1939025  2.2220585  2.266438   2.3353355  2.425063
+  2.531972   2.6607265  2.8119974  2.9867132  3.1990902  3.4105265
+  3.5898662  3.7490873  3.8920457  4.0085554  4.102728   4.2216873
+  4.3854933  4.6162596  4.985556   5.5811896  6.3532214  7.1792164
+  8.015096   8.83397    9.501882   9.987141  10.380674  10.707382
+ 10.987972  11.227824  11.444014  11.678197  11.9898405 12.441439
+ 13.06343   13.893559  14.931976  16.174635  17.728275  19.672592 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 49.41914367675781 ppbv occurs at [14, 7, 22]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 838   triangle count = 2608   placemark count = 13
+
+Frame time: 2022-05-28 22:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_22:00:00
+Actual date = 2022-05-28T22:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.177831   2.1938822  2.2220032  2.266322   2.3351188  2.4247096
+  2.531451   2.6599991  2.811025   2.985454   3.1974804  3.4085627
+  3.587596   3.7465372  3.889236   4.00554    4.0995536  4.2183223
+  4.3818917  4.6124053  4.9817877  5.5777164  6.350058   7.176263
+  8.01181    8.829528   9.495867   9.979816  10.372332  10.69825
+ 10.978288  11.217913  11.434232  11.668979  11.981623  12.434326
+ 13.056731  13.886795  14.926635  16.170916  17.726444  19.671534 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 48.48456954956055 ppbv occurs at [14, 8, 22]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 838   triangle count = 2608   placemark count = 13
+
+Frame time: 2022-05-28 23:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-28_23:00:00
+Actual date = 2022-05-28T23:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1778162  2.1938024  2.2218041  2.26593    2.334422   2.4236095
+  2.5298645  2.6578236  2.8081608  2.9818127  3.1929333  3.403157
+  3.581498   3.7398536  3.8820639  3.997993   4.091721   4.2101517
+  4.3733015  4.6033883  4.9724956  5.5687675  6.3422894  7.1698146
+  8.005729   8.822376   9.487219   9.969965  10.361295  10.685936
+ 10.964654  11.203216  11.419092  11.654395  11.968897  12.424565
+ 13.049749  13.880956  14.92076   16.168034  17.725857  19.66982  ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 47.9900016784668 ppbv occurs at [15, 16, 19]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 838   triangle count = 2608   placemark count = 13
+
+Frame time: 2022-05-29 00:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_00:00:00
+Actual date = 2022-05-29T00:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.177788   2.1936672  2.2214873  2.2653348  2.3334062  2.4220607
+  2.527698   2.6549315  2.804436   2.9771414  3.1871245  3.3962274
+  3.573653   3.7313097  3.8730593  3.988704   4.0822515  4.200516
+  4.3635015  4.593551   4.9627204  5.558874   6.3321495  7.159746
+  7.995093   8.809944   9.473041   9.954515  10.34491   10.66913
+ 10.948028  11.187279  11.404113  11.640439  11.956017  12.413013
+ 13.040261  13.874823  14.917751  16.165867  17.722553  19.664194 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 47.926395416259766 ppbv occurs at [15, 17, 22]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 838   triangle count = 2608   placemark count = 13
+
+Frame time: 2022-05-29 01:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_01:00:00
+Actual date = 2022-05-29T01:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.177756   2.1935105  2.2211165  2.2646267  2.33217    2.4201267
+  2.52492    2.6511276  2.7994347  2.9708     3.1794195  3.3875668
+  3.5645587  3.7220163  3.863648   3.9792266  4.0727515  4.191008
+  4.354029   4.584111   4.953375   5.55       6.3239846  7.1515317
+  7.986273   8.801015   9.464185   9.9454775 10.335476  10.658856
+ 10.937181  11.177574  11.396901  11.6357355 11.952603  12.409201
+ 13.036278  13.872579  14.916718  16.164087  17.720278  19.658512 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 61.23101806640625 ppbv occurs at [15, 13, 5]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 838   triangle count = 2608   placemark count = 13
+
+Frame time: 2022-05-29 02:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_02:00:00
+Actual date = 2022-05-29T02:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1777337  2.1934044  2.2208672  2.26416    2.3313794  2.4189343
+  2.5232787  2.6490152  2.7968833  2.967808   3.1758137  3.3834004
+  3.5601206  3.7174542  3.8590007  3.9744983  4.0679665  4.1861806
+  4.3492146  4.57942    4.948856   5.5455837  6.31949    7.1463556
+  7.9794564  8.792003   9.453709   9.934876  10.3257    10.6508465
+ 10.93081   11.170878  11.38813   11.624737  11.9410095 12.399664
+ 13.029966  13.868115  14.913048  16.161364  17.717299  19.651669 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 71.52339172363281 ppbv occurs at [15, 17, 11]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+	1 has 58 triangles: 
+The isosurface passed through 26 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-0200-67ppbv-trop.dae with 58 triangles.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+	1 has 20 triangles: 
+The isosurface passed through 8 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-0200-70ppbv-trop.dae with 20 triangles.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+The isosurface passed through 0 grid cells.
+cell count = 872   triangle count = 2686   placemark count = 15
+
+Frame time: 2022-05-29 03:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_03:00:00
+Actual date = 2022-05-29T03:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.177727   2.1933825  2.2208366  2.2641373  2.3313925  2.4190402
+  2.5236018  2.6497345  2.7981312  2.9697187  3.1784885  3.3864813
+  3.563059   3.720008   3.861137   3.9763308  4.0695996  4.187594
+  4.3503013  4.57996    4.9484506  5.543471   6.3144293  7.1379333
+  7.9686146  8.780204   9.441981   9.923572  10.315053  10.641027
+ 10.921945  11.163029  11.381302  11.618879  11.93593   12.39516
+ 13.026166  13.866172  14.913653  16.161465  17.71585   19.652824 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 89.60724639892578 ppbv occurs at [15, 13, 15]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+	1 has 796 triangles: 
+The isosurface passed through 255 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-0300-67ppbv-trop.dae with 796 triangles.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+	1 has 584 triangles: 
+The isosurface passed through 185 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-0300-70ppbv-trop.dae with 584 triangles.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+	1 has 280 triangles: 
+The isosurface passed through 95 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-0300-75ppbv-trop.dae with 280 triangles.
+cell count = 1407   triangle count = 4346   placemark count = 18
+
+Frame time: 2022-05-29 04:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_04:00:00
+Actual date = 2022-05-29T04:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.177721   2.1933594  2.2207975  2.264113   2.3314543  2.4192672
+  2.5239828  2.650131   2.798346   2.9695404  3.1776674  3.3848875
+  3.56067    3.716861   3.8574035  3.972246   4.0653377  4.1832347
+  4.3459496  4.5757103  4.944147   5.538435   6.308171   7.1307206
+  7.9611607  8.7730875  9.435283   9.917184  10.308898  10.635115
+ 10.916351  11.157822  11.376464  11.614238  11.931021  12.389257
+ 13.0187845 13.857389  14.904984  16.155596  17.716274  19.657827 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 83.506103515625 ppbv occurs at [15, 12, 9]
+Creating isoSurface at 67 ppbv.
+Note: polygon beginning at x:-105.742923 y:41.110329 z:3.653339 val:0.000000 has 7 points.
+Note: polygon beginning at x:-105.783300 y:42.405407 z:4.128046 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.792286 y:40.996527 z:4.608671 val:0.000000 has 8 points.
+Note: polygon beginning at x:-106.627709 y:41.797625 z:3.960308 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 1386 triangles: 
+The isosurface passed through 418 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-0400-67ppbv-trop.dae with 1386 triangles.
+Creating isoSurface at 70 ppbv.
+Note: polygon beginning at x:-105.476774 y:41.222259 z:3.815649 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.091004 y:41.156700 z:4.360648 val:0.000000 has 7 points.
+Note: polygon beginning at x:-105.650406 y:42.329957 z:4.175051 val:0.000000 has 8 points.
+For each atmospheric layer, we have:
+	1 has 1024 triangles: 
+The isosurface passed through 318 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-0400-70ppbv-trop.dae with 1024 triangles.
+Creating isoSurface at 75 ppbv.
+Note: polygon beginning at x:-105.386000 y:41.341530 z:4.173099 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 466 triangles: 
+The isosurface passed through 153 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-0400-75ppbv-trop.dae with 466 triangles.
+cell count = 2296   triangle count = 7222   placemark count = 21
+
+Frame time: 2022-05-29 05:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_05:00:00
+Actual date = 2022-05-29T05:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1777177  2.1933448  2.2207625  2.264026   2.3312242  2.418751
+  2.5230246  2.6485744  2.7960758  2.9665086  3.1738625  3.3804684
+  3.555882   3.7117834  3.851995   3.9664927  4.05924    4.176675
+  4.3387804  4.5678554  4.9356046  5.529304   6.2988305  7.1217394
+  7.952823   8.765253   9.42776    9.90998   10.302086  10.628756
+ 10.910416  11.152188  11.370987  11.60878   11.925507  12.383889
+ 13.013929  13.852389  14.898651  16.148216  17.711128  19.656656 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 95.09661865234375 ppbv occurs at [15, 14, 14]
+Creating isoSurface at 67 ppbv.
+Note: polygon beginning at x:-106.601573 y:41.126269 z:4.253858 val:0.000000 has 8 points.
+For each atmospheric layer, we have:
+	1 has 1915 triangles: 
+The isosurface passed through 572 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-0500-67ppbv-trop.dae with 1915 triangles.
+Creating isoSurface at 70 ppbv.
+Note: polygon beginning at x:-106.827106 y:40.993279 z:4.175614 val:0.000000 has 7 points.
+Note: polygon beginning at x:-105.545367 y:40.992619 z:4.124253 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 1633 triangles: 
+The isosurface passed through 485 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-0500-70ppbv-trop.dae with 1633 triangles.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+	1 has 1024 triangles: 
+The isosurface passed through 312 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-0500-75ppbv-trop.dae with 1024 triangles.
+cell count = 3665   triangle count = 11794   placemark count = 24
+
+Frame time: 2022-05-29 06:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_06:00:00
+Actual date = 2022-05-29T06:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1776917  2.1932201  2.2204723  2.2635026  2.3303857  2.4175298
+  2.5213652  2.6464493  2.7935076  2.963522   3.1704185  3.3766387
+  3.551846   3.7077296  3.8480713  3.9627244  4.055597   4.173112
+  4.335239   4.564207   4.9316187  5.5246863  6.293481   7.115694
+  7.9460883  8.758005   9.420326   9.9026575 10.295084  10.622247
+ 10.90457   11.147169  11.366961  11.605974  11.924088  12.3834505
+ 13.013275  13.850182  14.894649  16.144047  17.708805  19.652798 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 93.99613189697266 ppbv occurs at [15, 6, 10]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+	1 has 1892 triangles: 
+The isosurface passed through 574 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-0600-67ppbv-trop.dae with 1892 triangles.
+Creating isoSurface at 70 ppbv.
+Note: polygon beginning at x:-105.678587 y:42.327683 z:3.914180 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 1674 triangles: 
+The isosurface passed through 497 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-0600-70ppbv-trop.dae with 1674 triangles.
+Creating isoSurface at 75 ppbv.
+Note: polygon beginning at x:-107.194472 y:41.295443 z:4.275716 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 1260 triangles: 
+The isosurface passed through 381 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-0600-75ppbv-trop.dae with 1260 triangles.
+cell count = 5117   triangle count = 16620   placemark count = 27
+
+Frame time: 2022-05-29 07:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_07:00:00
+Actual date = 2022-05-29T07:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1776783  2.1931508  2.2203062  2.2631912  2.3298655  2.4167838
+  2.5204284  2.645357   2.7922635  2.9621346  3.1689608  3.37525
+  3.5506554  3.706774   3.8472943  3.9620206  4.054887   4.1723394
+  4.3343253  4.563044   4.9300394  5.5225053  6.2906632  7.1123075
+  7.942105   8.753525   9.415624   9.897906  10.290322  10.617418
+ 10.899567  11.141883  11.36133   11.599984  11.917789  12.376985
+ 13.006845  13.844876  14.891798  16.143381  17.708202  19.64913  ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 93.23615264892578 ppbv occurs at [15, 9, 15]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+	1 has 2026 triangles: 
+The isosurface passed through 603 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-0700-67ppbv-trop.dae with 2026 triangles.
+Creating isoSurface at 70 ppbv.
+Note: polygon beginning at x:-106.777056 y:40.997948 z:4.210645 val:0.000000 has 7 points.
+Note: polygon beginning at x:-105.722382 y:42.324150 z:3.923123 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 1858 triangles: 
+The isosurface passed through 555 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-0700-70ppbv-trop.dae with 1858 triangles.
+Creating isoSurface at 75 ppbv.
+Note: polygon beginning at x:-107.136451 y:41.301024 z:4.069971 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.801960 y:41.107896 z:4.439576 val:0.000000 has 8 points.
+For each atmospheric layer, we have:
+	1 has 1460 triangles: 
+The isosurface passed through 435 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-0700-75ppbv-trop.dae with 1460 triangles.
+cell count = 6710   triangle count = 21964   placemark count = 30
+
+Frame time: 2022-05-29 08:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_08:00:00
+Actual date = 2022-05-29T08:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1776671  2.193099   2.220188   2.2629743  2.3295147  2.4162898
+  2.5197902  2.644577   2.791382   2.96117    3.1678312  3.373949
+  3.549218   3.7051654  3.8455064  3.9600885  4.0528517  4.1701913
+  4.332023   4.5605     4.9270225  5.518632   6.285778   7.1067533
+  7.936422   8.748154   9.410771   9.893508  10.286143  10.61317
+ 10.894992  11.136797  11.35562   11.593542  11.910539  12.369095
+ 12.999101  13.839342  14.890587  16.14491   17.705786  19.643473 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 92.77391052246094 ppbv occurs at [15, 9, 15]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+	1 has 2050 triangles: 
+The isosurface passed through 603 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-0800-67ppbv-trop.dae with 2050 triangles.
+Creating isoSurface at 70 ppbv.
+Note: polygon beginning at x:-107.136267 y:41.301042 z:3.914707 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 1882 triangles: 
+The isosurface passed through 565 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-0800-70ppbv-trop.dae with 1882 triangles.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+	1 has 1466 triangles: 
+The isosurface passed through 436 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-0800-75ppbv-trop.dae with 1466 triangles.
+cell count = 8314   triangle count = 27362   placemark count = 33
+
+Frame time: 2022-05-29 09:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_09:00:00
+Actual date = 2022-05-29T09:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1776571  2.1930497  2.2200742  2.2627735  2.3291929  2.4158134
+  2.5191445  2.6438515  2.7906046  2.9602027  3.1665552  3.3724277
+  3.5475805  3.7034357  3.8436787  3.958181   4.0508847  4.1681485
+  4.3298697  4.558167   4.9243674  5.515376   6.281654   7.1019597
+  7.931514   8.743288   9.40577    9.888335  10.280853  10.607821
+ 10.889602  11.131316  11.349912  11.587345  11.903395  12.360409
+ 12.988833  13.829147  14.88264   16.138224  17.698103  19.63718  ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 89.97988891601562 ppbv occurs at [15, 12, 15]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+	1 has 2201 triangles: 
+The isosurface passed through 655 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-0900-67ppbv-trop.dae with 2201 triangles.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+	1 has 1919 triangles: 
+The isosurface passed through 573 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-0900-70ppbv-trop.dae with 1919 triangles.
+Creating isoSurface at 75 ppbv.
+Note: polygon beginning at x:-106.292991 y:41.490457 z:4.006782 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 1303 triangles: 
+The isosurface passed through 391 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-0900-75ppbv-trop.dae with 1303 triangles.
+cell count = 9933   triangle count = 32785   placemark count = 36
+
+Frame time: 2022-05-29 10:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_10:00:00
+Actual date = 2022-05-29T10:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1776612  2.1930523  2.2200477  2.2626739  2.3289852  2.415464
+  2.5186183  2.643161   2.7897217  2.9590714  3.1651886  3.3708358
+  3.5457811  3.7014816  3.8416057  3.9560125  4.04863    4.165783
+  4.327377   4.555564   4.9216986  5.512693   6.2789702  7.099154
+  7.9283943  8.739805   9.401931   9.884063  10.276     10.602205
+ 10.883111  11.123947  11.341708  11.57828   11.893253  12.348592
+ 12.975294  13.816119  14.874356  16.135607  17.695297  19.630192 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 87.95774841308594 ppbv occurs at [15, 11, 15]
+Creating isoSurface at 67 ppbv.
+Note: polygon beginning at x:-106.391368 y:41.449813 z:4.375081 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.086799 y:41.416226 z:4.122711 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.827821 y:40.993212 z:4.462095 val:0.000000 has 7 points.
+Note: polygon beginning at x:-105.309021 y:41.199202 z:4.160564 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.981252 y:41.091106 z:4.493664 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 2149 triangles: 
+The isosurface passed through 634 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1000-67ppbv-trop.dae with 2149 triangles.
+Creating isoSurface at 70 ppbv.
+Note: polygon beginning at x:-106.279553 y:41.491634 z:3.806202 val:0.000000 has 8 points.
+Note: polygon beginning at x:-106.863586 y:40.989876 z:4.545983 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.212372 y:41.260184 z:4.643594 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 1783 triangles: 
+The isosurface passed through 535 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1000-70ppbv-trop.dae with 1783 triangles.
+Creating isoSurface at 75 ppbv.
+Note: polygon beginning at x:-106.341943 y:41.598415 z:3.828877 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.386852 y:41.951446 z:3.591913 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 1290 triangles: 
+The isosurface passed through 396 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1000-75ppbv-trop.dae with 1290 triangles.
+cell count = 11498   triangle count = 38007   placemark count = 39
+
+Frame time: 2022-05-29 11:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_11:00:00
+Actual date = 2022-05-29T11:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1776676  2.193078   2.2200952  2.2627347  2.329007   2.4153488
+  2.5182233  2.6425033  2.788866   2.957969   3.1639824  3.3696458
+  3.5445833  3.70029    3.8404284  3.9548469  4.0474815  4.164667
+  4.326312   4.5545554  4.9206862  5.5114384  6.2771072  7.096448
+  7.924293   8.733522   9.393788   9.875182  10.267179  10.593728
+ 10.874872  11.115729  11.333374  11.569885  11.885205  12.341502
+ 12.969224  13.811585  14.87273   16.133375  17.688234  19.624506 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 88.16851043701172 ppbv occurs at [15, 12, 15]
+Creating isoSurface at 67 ppbv.
+Note: polygon beginning at x:-106.275903 y:41.491954 z:3.807067 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 2144 triangles: 
+The isosurface passed through 640 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1100-67ppbv-trop.dae with 2144 triangles.
+Creating isoSurface at 70 ppbv.
+Note: polygon beginning at x:-106.326965 y:41.599727 z:3.650271 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 1878 triangles: 
+The isosurface passed through 557 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1100-70ppbv-trop.dae with 1878 triangles.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+	1 has 1346 triangles: 
+The isosurface passed through 412 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1100-75ppbv-trop.dae with 1346 triangles.
+cell count = 13107   triangle count = 43375   placemark count = 42
+
+Frame time: 2022-05-29 12:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_12:00:00
+Actual date = 2022-05-29T12:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1776464  2.193006   2.2199748  2.2625937  2.3288662  2.4152896
+  2.518435   2.6428015  2.788968   2.9579303  3.1639903  3.3697984
+  3.5448346  3.7006037  3.840756   3.9551718  4.047801   4.1649776
+  4.3265886  4.5547194  4.9205027  5.5103855  6.2746325  7.092468
+  7.9192486  8.727386   9.386284   9.866908  10.259133  10.586662
+ 10.868986  11.110754  11.32884   11.565295  11.880379  12.336565
+ 12.963997  13.806858  14.870786  16.131369  17.682167  19.621052 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 89.13594818115234 ppbv occurs at [15, 15, 13]
+Creating isoSurface at 67 ppbv.
+Note: polygon beginning at x:-107.415481 y:41.948648 z:3.587621 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 1934 triangles: 
+The isosurface passed through 573 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1200-67ppbv-trop.dae with 1934 triangles.
+Creating isoSurface at 70 ppbv.
+Note: polygon beginning at x:-107.577564 y:42.157836 z:3.664093 val:0.000000 has 8 points.
+Note: polygon beginning at x:-105.885331 y:40.964579 z:4.210756 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 1508 triangles: 
+The isosurface passed through 460 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1200-70ppbv-trop.dae with 1508 triangles.
+Creating isoSurface at 75 ppbv.
+Note: polygon beginning at x:-105.889219 y:40.964249 z:4.326042 val:0.000000 has 8 points.
+For each atmospheric layer, we have:
+	1 has 836 triangles: 
+The isosurface passed through 259 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1200-75ppbv-trop.dae with 836 triangles.
+cell count = 14399   triangle count = 47653   placemark count = 45
+
+Frame time: 2022-05-29 13:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_13:00:00
+Actual date = 2022-05-29T13:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1776676  2.1930707  2.2200675  2.2626436  2.3288612  2.4152656
+  2.518337   2.642593   2.788715   2.9576657  3.163471   3.3688622
+  3.5435636  3.69905    3.8389525  3.9531546  4.0456014  4.1625557
+  4.323864   4.55158    4.916763   5.5059543  6.2699733  7.0880976
+  7.915158   8.723128   9.381311   9.861298  10.253434  10.581124
+ 10.863561  11.105496  11.32399   11.561128  11.876759  12.332839
+ 12.960776  13.8061    14.872913  16.133684  17.681276  19.621222 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 85.68276977539062 ppbv occurs at [15, 15, 14]
+Creating isoSurface at 67 ppbv.
+Note: polygon beginning at x:-105.855131 y:40.967115 z:3.320944 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.205683 y:41.385829 z:4.457969 val:0.000000 has 8 points.
+For each atmospheric layer, we have:
+	1 has 1938 triangles: 
+The isosurface passed through 566 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1300-67ppbv-trop.dae with 1938 triangles.
+Creating isoSurface at 70 ppbv.
+Note: polygon beginning at x:-105.973910 y:41.069201 z:3.818224 val:0.000000 has 8 points.
+Note: polygon beginning at x:-105.621144 y:40.986461 z:4.014555 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 1444 triangles: 
+The isosurface passed through 421 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1300-70ppbv-trop.dae with 1444 triangles.
+Creating isoSurface at 75 ppbv.
+For each atmospheric layer, we have:
+	1 has 776 triangles: 
+The isosurface passed through 240 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1300-75ppbv-trop.dae with 776 triangles.
+cell count = 15626   triangle count = 51811   placemark count = 48
+
+Frame time: 2022-05-29 14:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_14:00:00
+Actual date = 2022-05-29T14:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1776867  2.1931596  2.2202687  2.263003   2.329361   2.4158084
+  2.5188901  2.6432106  2.7894874  2.9586623  3.1646478  3.3700283
+  3.5444965  3.6996353  3.839158   3.9530182  4.0451694  4.1617293
+  4.3224835  4.549518   4.914046   5.5029197  6.266995   7.084664
+  7.9111047  8.71845    9.375396   9.854213  10.24546   10.57252
+ 10.854989  11.097909  11.318161  11.557399  11.874438  12.330626
+ 12.958251  13.802331  14.865978  16.127644  17.681986  19.624975 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 82.59588623046875 ppbv occurs at [14, 15, 14]
+Creating isoSurface at 67 ppbv.
+Note: polygon beginning at x:-106.311915 y:41.713317 z:3.872554 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 1916 triangles: 
+The isosurface passed through 580 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1400-67ppbv-trop.dae with 1916 triangles.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+	1 has 1276 triangles: 
+The isosurface passed through 394 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1400-70ppbv-trop.dae with 1276 triangles.
+Creating isoSurface at 75 ppbv.
+Note: polygon beginning at x:-105.250399 y:41.240096 z:3.285977 val:0.000000 has 9 points.
+Note: polygon beginning at x:-105.707087 y:42.325384 z:3.584917 val:0.000000 has 7 points.
+Note: polygon beginning at x:-105.817795 y:42.428669 z:3.649506 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 760 triangles: 
+The isosurface passed through 227 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1400-75ppbv-trop.dae with 760 triangles.
+cell count = 16827   triangle count = 55763   placemark count = 51
+
+Frame time: 2022-05-29 15:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_15:00:00
+Actual date = 2022-05-29T15:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1777096  2.193269   2.2205248  2.2634814  2.3301697  2.4170263
+  2.5205271  2.6451957  2.7916925  2.9609334  3.1668444  3.3720262
+  3.5462701  3.7012312  3.8405566  3.9542058  4.0461817  4.1626186
+  4.32341    4.550712   4.915659   5.5051713  6.2705855  7.089906
+  7.9158115  8.720899   9.377084   9.855581  10.245373  10.570741
+ 10.851794  11.093678  11.313373  11.552878  11.871658  12.330623
+ 12.959129  13.801605  14.864067  16.129654  17.69069   19.63147  ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 78.14288330078125 ppbv occurs at [15, 15, 14]
+Creating isoSurface at 67 ppbv.
+Note: polygon beginning at x:-106.900372 y:42.222326 z:3.416325 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 1838 triangles: 
+The isosurface passed through 542 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1500-67ppbv-trop.dae with 1838 triangles.
+Creating isoSurface at 70 ppbv.
+Note: polygon beginning at x:-104.928189 y:41.488696 z:3.107508 val:0.000000 has 7 points.
+Note: polygon beginning at x:-105.067345 y:41.616803 z:3.469430 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 1180 triangles: 
+The isosurface passed through 358 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1500-70ppbv-trop.dae with 1180 triangles.
+Creating isoSurface at 75 ppbv.
+Note: polygon beginning at x:-104.770200 y:41.636806 z:3.272114 val:0.000000 has 8 points.
+Note: polygon beginning at x:-105.932346 y:42.531565 z:4.180289 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 446 triangles: 
+The isosurface passed through 128 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1500-75ppbv-trop.dae with 446 triangles.
+cell count = 17855   triangle count = 59227   placemark count = 54
+
+Frame time: 2022-05-29 16:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_16:00:00
+Actual date = 2022-05-29T16:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1777246  2.193331   2.2206552  2.2637093  2.3305423  2.4175808
+  2.5212948  2.6462169  2.793007   2.962579   3.1688101  3.3745067
+  3.5496287  3.7055814  3.8458672  3.9603107  4.0528836  4.1699157
+  4.3312387  4.5588675  4.923972   5.5139384  6.278805   7.095472
+  7.918492   8.722696   9.379351   9.858101  10.247801  10.572641
+ 10.85291   11.093879  11.3126135 11.551264  11.869883  12.33034
+ 12.96132   13.805024  14.868161  16.132463  17.693295  19.635878 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 75.57416534423828 ppbv occurs at [15, 14, 15]
+Creating isoSurface at 67 ppbv.
+Note: polygon beginning at x:-107.311472 y:42.746346 z:3.531947 val:0.000000 has 8 points.
+Note: polygon beginning at x:-107.108022 y:42.765501 z:3.701493 val:0.000000 has 8 points.
+For each atmospheric layer, we have:
+	1 has 2010 triangles: 
+The isosurface passed through 602 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1600-67ppbv-trop.dae with 2010 triangles.
+Creating isoSurface at 70 ppbv.
+Note: polygon beginning at x:-106.688781 y:42.360582 z:3.090556 val:0.000000 has 8 points.
+Note: polygon beginning at x:-106.557939 y:42.491593 z:3.120824 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.719637 y:42.576096 z:3.001006 val:0.000000 has 8 points.
+Note: polygon beginning at x:-107.555784 y:42.950903 z:3.446698 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.372930 y:42.965664 z:3.616787 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 1560 triangles: 
+The isosurface passed through 463 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1600-70ppbv-trop.dae with 1560 triangles.
+Creating isoSurface at 75 ppbv.
+Note: polygon beginning at x:-105.657635 y:42.441624 z:3.936749 val:0.000000 has 8 points.
+Note: polygon beginning at x:-105.507060 y:42.341347 z:3.987544 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 220 triangles: 
+The isosurface passed through 68 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1600-75ppbv-trop.dae with 220 triangles.
+cell count = 18988   triangle count = 63017   placemark count = 57
+
+Frame time: 2022-05-29 17:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_17:00:00
+Actual date = 2022-05-29T17:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1777465  2.193436   2.2209027  2.2641795  2.3313558  2.4188404
+  2.523085   2.6486473  2.796195   2.9666553  3.1739466  3.3804672
+  3.5559227  3.711996   3.8523715  3.966926   4.0596204  4.1768436
+  4.3385124  4.5668163  4.9330707  5.523524   6.2871065  7.1016316
+  7.923113   8.726768   9.383402   9.862276  10.252172  10.577313
+ 10.857914  11.099088  11.317704  11.555723  11.873185  12.332869
+ 12.965016  13.8111    14.874898  16.13679   17.69703   19.644167 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 78.64440155029297 ppbv occurs at [15, 0, 5]
+Creating isoSurface at 67 ppbv.
+Note: polygon beginning at x:-105.998239 y:42.526095 z:3.606079 val:0.000000 has 8 points.
+Note: polygon beginning at x:-107.374578 y:42.965507 z:3.324424 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.069169 y:42.994183 z:3.350331 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.245347 y:41.157984 z:4.402450 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.531358 y:43.063065 z:3.498719 val:0.000000 has 8 points.
+Note: polygon beginning at x:-107.484713 y:43.180190 z:3.470958 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.339987 y:43.468792 z:3.963693 val:0.000000 has 7 points.
+Note: polygon beginning at x:-105.656756 y:42.441695 z:4.051189 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 1686 triangles: 
+The isosurface passed through 496 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1700-67ppbv-trop.dae with 1686 triangles.
+Creating isoSurface at 70 ppbv.
+Note: polygon beginning at x:-106.612938 y:42.827746 z:3.089063 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.631288 y:42.939143 z:3.246755 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.374667 y:43.078090 z:3.390033 val:0.000000 has 8 points.
+Note: polygon beginning at x:-107.142671 y:43.325077 z:3.631931 val:0.000000 has 8 points.
+Note: polygon beginning at x:-106.799756 y:43.027480 z:3.435814 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.107304 y:43.215768 z:3.545837 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.024966 y:43.110795 z:3.570797 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.772491 y:43.246199 z:3.489239 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	1 has 1086 triangles: 
+The isosurface passed through 319 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1700-70ppbv-trop.dae with 1086 triangles.
+Creating isoSurface at 75 ppbv.
+Note: polygon beginning at x:-105.858824 y:42.874553 z:3.439614 val:0.000000 has 8 points.
+For each atmospheric layer, we have:
+	1 has 244 triangles: 
+The isosurface passed through 86 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1700-75ppbv-trop.dae with 244 triangles.
+cell count = 19889   triangle count = 66033   placemark count = 60
+
+Frame time: 2022-05-29 18:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_18:00:00
+Actual date = 2022-05-29T18:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.177767   2.193535   2.221136   2.2646208  2.3321157  2.4200103
+  2.524739   2.6508794  2.7990985  2.97032    3.1785016  3.3858216
+  3.561746   3.718019   3.8584535  3.9730403  4.065785   4.183136
+  4.345015   4.5734773  4.939645   5.529786   6.2934394  7.1085653
+  7.9307475  8.734655   9.390727   9.868545  10.257291  10.581401
+ 10.86118   11.101784  11.320153  11.5584    11.876604  12.33729
+ 12.9710245 13.818935  14.881871  16.143972  17.704344  19.647295 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 85.29261016845703 ppbv occurs at [15, 2, 9]
+Creating isoSurface at 67 ppbv.
+Note: polygon beginning at x:-107.043879 y:43.559348 z:3.852418 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	0 has 76 triangles: 
+	1 has 2288 triangles: 
+The isosurface passed through 661 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1800-67ppbv-surface.dae with 76 triangles.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1800-67ppbv-trop.dae with 2288 triangles.
+Creating isoSurface at 70 ppbv.
+For each atmospheric layer, we have:
+	0 has 56 triangles: 
+	1 has 1698 triangles: 
+The isosurface passed through 489 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1800-70ppbv-surface.dae with 56 triangles.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1800-70ppbv-trop.dae with 1698 triangles.
+Creating isoSurface at 75 ppbv.
+Note: polygon beginning at x:-105.947261 y:43.204376 z:3.449478 val:0.000000 has 8 points.
+Note: polygon beginning at x:-105.981029 y:43.313981 z:3.406480 val:0.000000 has 9 points.
+Note: polygon beginning at x:-106.737002 y:40.813649 z:4.680009 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	0 has 20 triangles: 
+	1 has 1040 triangles: 
+The isosurface passed through 295 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1800-75ppbv-surface.dae with 20 triangles.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1800-75ppbv-trop.dae with 1040 triangles.
+cell count = 21334   triangle count = 71211   placemark count = 66
+
+Frame time: 2022-05-29 19:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_19:00:00
+Actual date = 2022-05-29T19:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1777875  2.1936362  2.2213793  2.2650874  2.3329282  2.421271
+  2.5265307  2.653305   2.8022623  2.9743276  3.183519   3.3918216
+  3.5685449  3.7254813  3.866427   3.9813292  4.0742483  4.1917434
+  4.353711   4.581967   4.9476748  5.5378127  6.3021483  7.118535
+  7.942168   8.746563   9.402085   9.879168  10.267309  10.590897
+ 10.870097  11.109975  11.3273945 11.564394  11.881339  12.341581
+ 12.975817  13.824373  14.888889  16.152296  17.708979  19.644594 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 103.0346450805664 ppbv occurs at [15, 8, 2]
+Creating isoSurface at 67 ppbv.
+For each atmospheric layer, we have:
+	0 has 112 triangles: 
+	1 has 3096 triangles: 
+The isosurface passed through 912 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1900-67ppbv-surface.dae with 112 triangles.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1900-67ppbv-trop.dae with 3096 triangles.
+Creating isoSurface at 70 ppbv.
+Note: polygon beginning at x:-106.056082 y:41.213390 z:4.051614 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.479794 y:41.473970 z:4.333745 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.190463 y:41.183476 z:4.345739 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	0 has 62 triangles: 
+	1 has 2112 triangles: 
+The isosurface passed through 619 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1900-70ppbv-surface.dae with 62 triangles.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1900-70ppbv-trop.dae with 2112 triangles.
+Creating isoSurface at 75 ppbv.
+Note: polygon beginning at x:-105.555148 y:43.460376 z:3.334029 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	0 has 32 triangles: 
+	1 has 1144 triangles: 
+The isosurface passed through 336 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1900-75ppbv-surface.dae with 32 triangles.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-1900-75ppbv-trop.dae with 1144 triangles.
+cell count = 23201   triangle count = 77769   placemark count = 72
+
+Frame time: 2022-05-29 20:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_20:00:00
+Actual date = 2022-05-29T20:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1777809  2.1936047  2.2213004  2.264929   2.3326442  2.4208262
+  2.525902   2.6524692  2.8012073  2.9730606  3.182082   3.3903599
+  3.5672965  3.7246003  3.8659427  3.9811792  4.0743413  4.1920443
+  4.3541784  4.5827813  4.9490867  5.5397396  6.304754   7.122649
+  7.9484963  8.755289   9.412331   9.889231  10.275882  10.597959
+ 10.876704  11.116979  11.335104  11.572713  11.8896885 12.349097
+ 12.982812  13.831696  14.895113  16.157478  17.714046  19.646795 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 102.39239501953125 ppbv occurs at [10, 9, 0]
+Creating isoSurface at 67 ppbv.
+Note: polygon beginning at x:-105.798931 y:41.308137 z:2.239409 val:0.000000 has 8 points.
+Note: polygon beginning at x:-107.473225 y:41.943005 z:3.586902 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.128810 y:42.178195 z:3.673033 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.643187 y:41.122500 z:4.157976 val:0.000000 has 8 points.
+Note: polygon beginning at x:-105.304635 y:42.244680 z:3.710528 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	0 has 350 triangles: 
+	1 has 6075 triangles: 
+The isosurface passed through 1758 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-2000-67ppbv-surface.dae with 350 triangles.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-2000-67ppbv-trop.dae with 6075 triangles.
+Creating isoSurface at 70 ppbv.
+Note: polygon beginning at x:-106.103290 y:41.843545 z:2.116528 val:0.000000 has 8 points.
+Note: polygon beginning at x:-106.230033 y:41.944964 z:2.532809 val:0.000000 has 8 points.
+Note: polygon beginning at x:-107.726160 y:41.369660 z:2.671394 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.670810 y:41.898845 z:2.833486 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.734421 y:42.250076 z:3.473615 val:0.000000 has 8 points.
+Note: polygon beginning at x:-106.793348 y:41.160604 z:4.321449 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	0 has 284 triangles: 
+	1 has 5251 triangles: 
+The isosurface passed through 1497 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-2000-70ppbv-surface.dae with 284 triangles.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-2000-70ppbv-trop.dae with 5251 triangles.
+Creating isoSurface at 75 ppbv.
+Note: polygon beginning at x:-107.650035 y:41.783300 z:2.881429 val:0.000000 has 8 points.
+Note: polygon beginning at x:-105.860374 y:41.976164 z:3.511802 val:0.000000 has 7 points.
+Note: polygon beginning at x:-105.875025 y:41.638299 z:3.858221 val:0.000000 has 8 points.
+Note: polygon beginning at x:-106.562766 y:42.028122 z:3.821807 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	0 has 142 triangles: 
+	1 has 3536 triangles: 
+The isosurface passed through 1024 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-2000-75ppbv-surface.dae with 142 triangles.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-2000-75ppbv-trop.dae with 3536 triangles.
+cell count = 27480   triangle count = 93407   placemark count = 78
+
+Frame time: 2022-05-29 21:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_21:00:00
+Actual date = 2022-05-29T21:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1777818  2.1936114  2.2213235  2.2649853  2.3327587  2.4210215
+  2.5261965  2.6528838  2.8017592  2.973759   3.1829176  3.3912437
+  3.568058   3.7251441  3.8662927  3.9814177  4.07455    4.192276
+  4.354504   4.583331   4.9503703  5.5428414  6.310427   7.1303964
+  7.9570465  8.763491   9.420106   9.897463  10.2852955 10.608067
+ 10.886081  11.124607  11.340681  11.57647   11.8926525 12.352631
+ 12.98657   13.834176  14.895196  16.156303  17.715082  19.645075 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 122.5833740234375 ppbv occurs at [10, 6, 2]
+Creating isoSurface at 67 ppbv.
+Note: polygon beginning at x:-106.915758 y:41.321875 z:2.347563 val:0.000000 has 7 points.
+Note: polygon beginning at x:-105.189904 y:41.805150 z:1.888910 val:0.000000 has 8 points.
+Note: polygon beginning at x:-105.244794 y:42.025206 z:1.770742 val:0.000000 has 8 points.
+Note: polygon beginning at x:-107.426097 y:41.385344 z:2.927044 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.288973 y:42.838661 z:2.329192 val:0.000000 has 8 points.
+Note: polygon beginning at x:-105.251795 y:41.866497 z:2.626127 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.274574 y:42.839884 z:2.919984 val:0.000000 has 8 points.
+Note: polygon beginning at x:-106.352107 y:41.199090 z:4.167275 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.061351 y:41.869422 z:3.423896 val:0.000000 has 8 points.
+Note: polygon beginning at x:-106.965545 y:41.299347 z:4.003222 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.485105 y:41.249002 z:4.121851 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.263158 y:41.290762 z:3.966500 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.439585 y:41.444595 z:3.845056 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.481219 y:41.681702 z:3.843869 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.230089 y:41.629196 z:3.985949 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	0 has 586 triangles: 
+	1 has 9892 triangles: 
+The isosurface passed through 2817 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-2100-67ppbv-surface.dae with 586 triangles.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-2100-67ppbv-trop.dae with 9892 triangles.
+Creating isoSurface at 70 ppbv.
+Note: polygon beginning at x:-105.001337 y:42.242540 z:1.454275 val:0.000000 has 7 points.
+Note: polygon beginning at x:-104.697649 y:42.236430 z:1.406915 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.057150 y:41.645661 z:2.128949 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.127173 y:41.751433 z:2.115496 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.982264 y:41.877474 z:2.042460 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.489996 y:41.379022 z:2.863725 val:0.000000 has 9 points.
+Note: polygon beginning at x:-104.868172 y:42.379929 z:2.285272 val:0.000000 has 8 points.
+Note: polygon beginning at x:-107.157931 y:42.873381 z:2.933156 val:0.000000 has 8 points.
+Note: polygon beginning at x:-107.647375 y:41.768455 z:3.479750 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.405162 y:41.274984 z:3.953781 val:0.000000 has 8 points.
+Note: polygon beginning at x:-107.123837 y:41.351123 z:4.248871 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	0 has 452 triangles: 
+	1 has 8746 triangles: 
+The isosurface passed through 2490 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-2100-70ppbv-surface.dae with 452 triangles.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-2100-70ppbv-trop.dae with 8746 triangles.
+Creating isoSurface at 75 ppbv.
+Note: polygon beginning at x:-105.830031 y:42.539961 z:2.684251 val:0.000000 has 8 points.
+Note: polygon beginning at x:-107.036171 y:41.647648 z:3.303913 val:0.000000 has 7 points.
+Note: polygon beginning at x:-105.699564 y:40.867992 z:4.282883 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.159950 y:42.985743 z:3.380262 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.446033 y:41.270947 z:4.030403 val:0.000000 has 7 points.
+Note: polygon beginning at x:-105.090327 y:42.036951 z:3.335042 val:0.000000 has 8 points.
+Note: polygon beginning at x:-107.942151 y:43.698966 z:3.277818 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	0 has 274 triangles: 
+	1 has 5436 triangles: 
+The isosurface passed through 1590 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-2100-75ppbv-surface.dae with 274 triangles.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-2100-75ppbv-trop.dae with 5436 triangles.
+cell count = 34377   triangle count = 118793   placemark count = 84
+
+Frame time: 2022-05-29 22:00:02.379490
+Reading o3 from WRF-Chem file /WRF-Chem/20220528/wrf/wrfout_hourly_d01_2022-05-29_22:00:00
+Actual date = 2022-05-29T22:00:00.000000000 at file index 0
+maxPlotHeight = 4000.0 meters
+centerHeights = [ 2.1777406  2.1934114  2.2208486  2.2640805  2.3311913  2.4185996
+  2.5227652  2.6482477  2.7957222  2.9661844  3.1737375  3.3809633
+  3.5573528  3.7142253  3.8552232  3.9702158  4.063224   4.1808
+  4.342861   4.5715365  4.9382997  5.530048   6.2968326  7.116754
+  7.9443426  8.752116   9.409333   9.886599  10.275168  10.600337
+ 10.881527  11.122934  11.34127   11.578581  11.895195  12.354248
+ 12.985862  13.831323  14.891275  16.153069  17.712912  19.643026 ] km
+3D model origin lat, lon = (42.385841369628906, -106.19740295410156)
+Maximum value 132.7326202392578 ppbv occurs at [10, 3, 1]
+Creating isoSurface at 67 ppbv.
+Note: polygon beginning at x:-106.895825 y:40.874625 z:2.736358 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.300410 y:41.040991 z:2.629973 val:0.000000 has 8 points.
+Note: polygon beginning at x:-106.137228 y:41.167369 z:2.666132 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.275704 y:41.716479 z:2.235603 val:0.000000 has 8 points.
+Note: polygon beginning at x:-104.715539 y:42.373438 z:1.740770 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.819026 y:43.129542 z:1.946393 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.903501 y:43.163943 z:1.956950 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.664755 y:43.275415 z:2.156455 val:0.000000 has 7 points.
+Note: polygon beginning at x:-105.602222 y:41.772795 z:3.552743 val:0.000000 has 7 points.
+Note: polygon beginning at x:-105.866874 y:41.950729 z:3.506709 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.610798 y:40.720545 z:3.659438 val:0.000000 has 7 points.
+Note: polygon beginning at x:-105.685438 y:41.766095 z:3.708627 val:0.000000 has 7 points.
+Note: polygon beginning at x:-105.789079 y:41.869794 z:3.678201 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	0 has 684 triangles: 
+	1 has 10602 triangles: 
+The isosurface passed through 3066 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-2200-67ppbv-surface.dae with 684 triangles.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-2200-67ppbv-trop.dae with 10602 triangles.
+Creating isoSurface at 70 ppbv.
+Note: polygon beginning at x:-107.561757 y:41.287365 z:2.160223 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.551191 y:43.040814 z:1.701462 val:0.000000 has 8 points.
+Note: polygon beginning at x:-105.300699 y:41.236187 z:2.527569 val:0.000000 has 7 points.
+Note: polygon beginning at x:-104.720904 y:42.414418 z:1.686532 val:0.000000 has 7 points.
+Note: polygon beginning at x:-104.882660 y:42.488222 z:1.980240 val:0.000000 has 7 points.
+Note: polygon beginning at x:-104.838596 y:42.504065 z:2.010853 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.846834 y:43.239549 z:2.329318 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.074032 y:43.331404 z:2.634744 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.269512 y:41.629650 z:3.175477 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.105800 y:41.170075 z:3.608993 val:0.000000 has 8 points.
+Note: polygon beginning at x:-106.280341 y:41.042748 z:3.841754 val:0.000000 has 8 points.
+Note: polygon beginning at x:-106.346257 y:41.598037 z:3.667770 val:0.000000 has 8 points.
+Note: polygon beginning at x:-105.865513 y:41.941608 z:3.328415 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.933443 y:41.106022 z:4.137291 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.825348 y:43.179144 z:3.097491 val:0.000000 has 7 points.
+Note: polygon beginning at x:-105.836153 y:41.865935 z:3.806012 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.177657 y:42.286360 z:3.843465 val:0.000000 has 7 points.
+Note: polygon beginning at x:-105.791685 y:42.461556 z:4.101505 val:0.000000 has 7 points.
+Note: polygon beginning at x:-108.119538 y:43.681190 z:3.152692 val:0.000000 has 8 points.
+Note: polygon beginning at x:-106.862216 y:42.113408 z:3.870732 val:0.000000 has 8 points.
+Note: polygon beginning at x:-106.542171 y:42.394448 z:3.892149 val:0.000000 has 7 points.
+Note: polygon beginning at x:-108.143513 y:43.678776 z:3.266563 val:0.000000 has 7 points.
+For each atmospheric layer, we have:
+	0 has 564 triangles: 
+	1 has 11087 triangles: 
+The isosurface passed through 3128 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-2200-70ppbv-surface.dae with 564 triangles.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-2200-70ppbv-trop.dae with 11087 triangles.
+Creating isoSurface at 75 ppbv.
+Note: polygon beginning at x:-105.748538 y:41.873118 z:2.137838 val:0.000000 has 8 points.
+Note: polygon beginning at x:-105.702400 y:41.989091 z:2.179009 val:0.000000 has 8 points.
+Note: polygon beginning at x:-106.409892 y:42.153974 z:2.268758 val:0.000000 has 8 points.
+Note: polygon beginning at x:-106.400860 y:42.154766 z:2.487793 val:0.000000 has 8 points.
+Note: polygon beginning at x:-106.431946 y:43.051190 z:2.031828 val:0.000000 has 7 points.
+Note: polygon beginning at x:-107.518187 y:41.039644 z:2.669366 val:0.000000 has 7 points.
+Note: polygon beginning at x:-104.528211 y:42.094700 z:2.005796 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.412864 y:42.378429 z:2.930536 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.710109 y:42.576945 z:2.791675 val:0.000000 has 8 points.
+Note: polygon beginning at x:-107.104054 y:41.079445 z:3.767361 val:0.000000 has 8 points.
+Note: polygon beginning at x:-107.398163 y:41.725370 z:3.827280 val:0.000000 has 7 points.
+Note: polygon beginning at x:-106.989149 y:41.202673 z:4.469989 val:0.000000 has 8 points.
+For each atmospheric layer, we have:
+	0 has 476 triangles: 
+	1 has 9208 triangles: 
+The isosurface passed through 2629 grid cells.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-2200-75ppbv-surface.dae with 476 triangles.
+Writing DAE Collada file stage/o3-20220527to20220529/o3-20220529-2200-75ppbv-trop.dae with 9208 triangles.
+cell count = 43200   triangle count = 151414   placemark count = 90
+
+Examined 43200 grid cells; created 151414 triangles and 90 placemarks.
+flightRange = 106.0660171779819 km
+legTime = 4:05:00
+flightRange 2 = 212.1320343559638 km
+numWaypoints = 4
+timeStep = 2.0, then 7.666666666666667 seconds
+Hover from 2019-08-08 23:50:00 to 2019-08-09 03:10:00
+tourName = Hover03-20190808-2350to20190809-0310
+actualLatBounds = [40.69312, 44.078564]
+actualLonBounds = [-108.17824, -104.3876]
+Writing to KML file stage/o3-20220527to20220529/o3-20220527to20220529.kml
+Saving colorbar image as stage/o3-20220527to20220529/o3-colorbar.png
+zip --junk-paths -FS daily/Auto-o3-20220527to20220529.kmz stage/o3-20220527to20220529/o3-20220527to20220529.kml stage/o3-20220527to20220529/*.dae stage/o3-20220527to20220529/*.png
+  adding: o3-20220527to20220529.kml (deflated 96%)
+  adding: o3-20220528-0000-67ppbv-surface.dae (deflated 73%)
+  adding: o3-20220528-0000-67ppbv-trop.dae (deflated 80%)
+  adding: o3-20220528-0000-70ppbv-trop.dae (deflated 76%)
+  adding: o3-20220528-0000-75ppbv-trop.dae (deflated 74%)
+  adding: o3-20220528-0100-67ppbv-trop.dae (deflated 80%)
+  adding: o3-20220528-0100-70ppbv-trop.dae (deflated 80%)
+  adding: o3-20220528-0200-67ppbv-trop.dae (deflated 80%)
+  adding: o3-20220528-0200-70ppbv-trop.dae (deflated 80%)
+  adding: o3-20220528-0300-67ppbv-trop.dae (deflated 80%)
+  adding: o3-20220528-0300-70ppbv-trop.dae (deflated 79%)
+  adding: o3-20220528-0400-67ppbv-trop.dae (deflated 80%)
+  adding: o3-20220528-0500-67ppbv-trop.dae (deflated 80%)
+  adding: o3-20220528-0600-67ppbv-trop.dae (deflated 77%)
+  adding: o3-20220529-0200-67ppbv-trop.dae (deflated 77%)
+  adding: o3-20220529-0200-70ppbv-trop.dae (deflated 75%)
+  adding: o3-20220529-0300-67ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-0300-70ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-0300-75ppbv-trop.dae (deflated 80%)
+  adding: o3-20220529-0400-67ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-0400-70ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-0400-75ppbv-trop.dae (deflated 80%)
+  adding: o3-20220529-0500-67ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-0500-70ppbv-trop.dae (deflated 82%)
+  adding: o3-20220529-0500-75ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-0600-67ppbv-trop.dae (deflated 82%)
+  adding: o3-20220529-0600-70ppbv-trop.dae (deflated 82%)
+  adding: o3-20220529-0600-75ppbv-trop.dae (deflated 82%)
+  adding: o3-20220529-0700-67ppbv-trop.dae (deflated 82%)
+  adding: o3-20220529-0700-70ppbv-trop.dae (deflated 82%)
+  adding: o3-20220529-0700-75ppbv-trop.dae (deflated 82%)
+  adding: o3-20220529-0800-67ppbv-trop.dae (deflated 82%)
+  adding: o3-20220529-0800-70ppbv-trop.dae (deflated 82%)
+  adding: o3-20220529-0800-75ppbv-trop.dae (deflated 82%)
+  adding: o3-20220529-0900-67ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-0900-70ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-0900-75ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-1000-67ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-1000-70ppbv-trop.dae (deflated 82%)
+  adding: o3-20220529-1000-75ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-1100-67ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-1100-70ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-1100-75ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-1200-67ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-1200-70ppbv-trop.dae (deflated 82%)
+  adding: o3-20220529-1200-75ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-1300-67ppbv-trop.dae (deflated 82%)
+  adding: o3-20220529-1300-70ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-1300-75ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-1400-67ppbv-trop.dae (deflated 82%)
+  adding: o3-20220529-1400-70ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-1400-75ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-1500-67ppbv-trop.dae (deflated 82%)
+  adding: o3-20220529-1500-70ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-1500-75ppbv-trop.dae (deflated 80%)
+  adding: o3-20220529-1600-67ppbv-trop.dae (deflated 82%)
+  adding: o3-20220529-1600-70ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-1600-75ppbv-trop.dae (deflated 79%)
+  adding: o3-20220529-1700-67ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-1700-70ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-1700-75ppbv-trop.dae (deflated 80%)
+  adding: o3-20220529-1800-67ppbv-surface.dae (deflated 79%)
+  adding: o3-20220529-1800-67ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-1800-70ppbv-surface.dae (deflated 78%)
+  adding: o3-20220529-1800-70ppbv-trop.dae (deflated 82%)
+  adding: o3-20220529-1800-75ppbv-surface.dae (deflated 76%)
+  adding: o3-20220529-1800-75ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-1900-67ppbv-surface.dae (deflated 79%)
+  adding: o3-20220529-1900-67ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-1900-70ppbv-surface.dae (deflated 78%)
+  adding: o3-20220529-1900-70ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-1900-75ppbv-surface.dae (deflated 77%)
+  adding: o3-20220529-1900-75ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-2000-67ppbv-surface.dae (deflated 80%)
+  adding: o3-20220529-2000-67ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-2000-70ppbv-surface.dae (deflated 80%)
+  adding: o3-20220529-2000-70ppbv-trop.dae (deflated 82%)
+  adding: o3-20220529-2000-75ppbv-surface.dae (deflated 79%)
+  adding: o3-20220529-2000-75ppbv-trop.dae (deflated 82%)
+  adding: o3-20220529-2100-67ppbv-surface.dae (deflated 80%)
+  adding: o3-20220529-2100-67ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-2100-70ppbv-surface.dae (deflated 80%)
+  adding: o3-20220529-2100-70ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-2100-75ppbv-surface.dae (deflated 80%)
+  adding: o3-20220529-2100-75ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-2200-67ppbv-surface.dae (deflated 80%)
+  adding: o3-20220529-2200-67ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-2200-70ppbv-surface.dae (deflated 80%)
+  adding: o3-20220529-2200-70ppbv-trop.dae (deflated 81%)
+  adding: o3-20220529-2200-75ppbv-surface.dae (deflated 80%)
+  adding: o3-20220529-2200-75ppbv-trop.dae (deflated 81%)
+  adding: 3000metersAltitude.png (deflated 64%)
+  adding: o3-colorbar.png (deflated 6%)
+End time: 2022-05-28 16:02:34.246143 Local
+
