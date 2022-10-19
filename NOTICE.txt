@@ -1,0 +1,10 @@
+This Python package "Marching Cubes" is distributed via GitHub under the Apache 2.0 License.
+See LICENSE file in this repository for specific information.
+
+Carl Drews - October 19, 2022
+drews@ucar.edu
+
+Atmospheric Chemistry Observations & Modeling (ACOM)
+National Center for Atmospheric Research (NCAR)
+Boulder, Colorado USA
+
