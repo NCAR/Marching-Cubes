@@ -29,7 +29,8 @@ class WaccmModel(Model4D.AtmosModel):
    def getModelName(self):
       return("WACCM")
 
-   def getFilename(self, year, month, day, hour):
+   def getFilename(self, year, month, day, hour,
+      minute=0):
       return("f.e22.beta02.FWSD.f09_f09_mg17.cesm2_2_beta02.forecast.002.cam.h3.{:4d}-{:02d}-{:02d}-00000.nc"
          .format(year, month, day))
 
@@ -96,6 +97,7 @@ class WaccmModel(Model4D.AtmosModel):
       #self.progress("Actual longitudes = {}".format(lons))
    
       # find the requested frame time
+      self.progress("Looking for frameTime {}".format(frameTime))
       dateIndex = 0
       date = fp.variables["date"][:]
       datesec = fp.variables["datesec"][:]
@@ -110,6 +112,7 @@ class WaccmModel(Model4D.AtmosModel):
    
          myDateTime = datetime.datetime(int(dateStr[0:4]), int(dateStr[4:6]),
             int(dateStr[6:8]), hour=hour, minute=minute, second=daySeconds)
+         #self.progress("myDateTime = {}".format(myDateTime))
          if (myDateTime <= frameTime):
             dateIndex = di
             self.progress("Actual date = {}".format(myDateTime))

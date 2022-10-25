@@ -49,13 +49,16 @@ class AtmosModel:
          return("Ozone")
       if (species.lower() == "co_fire"):
          return("CO fires")
+      if (species.lower() == "extinctdn"):
+         return("Aerosol extinction")
 
       return("ChemName???")
 
 
 
    # return possible sub-directories and filename below BASE_DIRECTORY
-   def getFilename(self, year, month, day, hour):
+   def getFilename(self, year, month, day, hour,
+      minute=0):
       return("AtmosModel-{:4d}{:02d}{:02d}-{:02}000.nc"
          .format(year, month, day, hour))
 

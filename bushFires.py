@@ -21,6 +21,7 @@ import acomKml
 import Model4D
 import Waccm4D
 import WrfChem4D
+import CamChem4D
 
 import colorbar
 import subprocess
@@ -229,16 +230,22 @@ def isoColor(isoIndex):
 #		lats, lons = vector of horizontal grid locations
 #		heights = vertical grid locations in 3-D space
 # chemDivisions = minimum values for green, yellow, and red
+# minPlotHeight = create 3D surfaces beginning at this height above sea level (meters)
 # maxPlotHeight = create slabs up to this height above sea level (meters)
 # stageDirectory = where to write the .DAE Collada files created
 # species = looking at this chemical compound
 # return updated [cellCount, triangleCount, markCount]
 def createOneFrame(startTime, endTime, layerFolders, cellCount,
-   triangleCount, markCount, myWaccmData, chemDivisions, maxPlotHeight,
+   triangleCount, markCount, myWaccmData, chemDivisions,
+   minPlotHeight, maxPlotHeight,
    stageDirectory, species):
 
    # collect the WACCM data
    chemValues = myWaccmData[0]
+   if (False):
+      # bogus - force a surface layer at 3.0
+      chemValues[0, :] = 2.5
+      chemValues[1, :] = 3.5
    #progress("chemValues shape = {}".format(chemValues.shape))
    lats = myWaccmData[1]
    lons = myWaccmData[2]
@@ -248,11 +255,13 @@ def createOneFrame(startTime, endTime, layerFolders, cellCount,
    units = myWaccmData[4]
    ground = myWaccmData[5]
 
+   progress("minPlotHeight = {} meters".format(minPlotHeight))
    progress("maxPlotHeight = {} meters".format(maxPlotHeight))
 
    # adjust heights (m) for Google Earth (km)
    meterToKm = 0.001
    heights *= meterToKm
+   minPlotHeight *= meterToKm
    maxPlotHeight *= meterToKm
 
    # create a quick and easy way to access height for this z-level
@@ -274,6 +283,10 @@ def createOneFrame(startTime, endTime, layerFolders, cellCount,
       for z in range(0, chemValues.shape[0]):
          if (maxPlotHeight <= 0.0 and z > 0):
             # surface plot only
+            continue
+
+         # check if level within altitude range
+         if (minPlotHeight >= 0.0 and centerHeights[z] < minPlotHeight):
             continue
          if (maxPlotHeight > 0.0 and centerHeights[z] > maxPlotHeight):
             continue
@@ -300,7 +313,7 @@ def createOneFrame(startTime, endTime, layerFolders, cellCount,
 
       # derive one isosurface, separated into layers of the atmosphere
       surfaceInfo = createOneSurface(chemValues, lats, lons, heights, units, ground,
-         isoValue, maxPlotHeight, layerFolders, isoIndex)
+         isoValue, minPlotHeight, maxPlotHeight, layerFolders, isoIndex)
       cellCount += surfaceInfo[0]
       triangleCount += surfaceInfo[1]
       layers = surfaceInfo[2]
@@ -316,6 +329,7 @@ def createOneFrame(startTime, endTime, layerFolders, cellCount,
          # and convert absolute lat-lon to relative km.
          for triangle in triList:
             triangle.exaggerateHeight(terrainExaggeration)
+            # Curve the triangle surfaces down from the origin.
             triangle.latLonToKm(centerCoords)
 
             # calculate normal vectors for each triangle
@@ -331,12 +345,14 @@ def createOneFrame(startTime, endTime, layerFolders, cellCount,
 
          #progress("First triangle in km = {}\n{}".format(triList[0], triList[0].toString()))
 
-         # TODO: Curve the triangle surfaces down from the origin.
-         # Carl Drews - April 22, 2021
-
          # filename goes into placemark, so save it
-         daeNameOnly = ("{}-{}-{}-{:.0f}{}-{}.dae"
-            .format(species, yearMonthDay, hourMinute, isoValue, units,
+         safeUnits = units.replace("/", "_per_")		# safe for filenames
+         isoValueStr = "{:.0f}".format(isoValue)
+         if (isoValue < 1.0):
+            isoValueStr = "{:.1e}".format(isoValue)
+
+         daeNameOnly = ("{}-{}-{}-{}{}-{}.dae"
+            .format(species, yearMonthDay, hourMinute, isoValueStr, safeUnits,
             layerAbbrev(atmosLayer)))
          daePathName = stageDirectory + daeNameOnly
          daeColor = isoColor(isoIndex)
@@ -363,6 +379,7 @@ def createOneFrame(startTime, endTime, layerFolders, cellCount,
 # units = for the chemical species
 # ground = terrain elevation
 # isoValue = create 3D surface along this chemical value
+# minPlotHeight = start plotting at this level
 # maxPlotHeight = go up to this level and no higher
 # layerFolders = KML folders for each layer of the atmosphere
 # thresholdIndex = which isoValue within the atmospheric layer
@@ -371,7 +388,7 @@ def createOneFrame(startTime, endTime, layerFolders, cellCount,
 #	triangles = how many triangles created here
 #	layers = list of triangles created for each atmospheric layer
 def createOneSurface(chemValues, lats, lons, heights, units, ground,
-   isoValue, maxPlotHeight, layerFolders, thresholdIndex):
+   isoValue, minPlotHeight, maxPlotHeight, layerFolders, thresholdIndex):
    progress("Creating isoSurface at {} {}.".format(isoValue, units))
 
    # bogus - flatten the model layers for testing
@@ -391,6 +408,10 @@ def createOneSurface(chemValues, lats, lons, heights, units, ground,
    for z in range(0, chemValues.shape[0] - 1):
       if (maxPlotHeight <= 0.0 and z > 0):
          # surface plot only
+         continue
+
+      # check if level within altitude range
+      if (minPlotHeight >= 0.0 and centerHeights[z] < minPlotHeight):
          continue
       if (maxPlotHeight > 0.0 and centerHeights[z] > maxPlotHeight):
          continue
@@ -766,8 +787,10 @@ def main():
    # set up the default model and species to plot
    model = "wrf-chem"
    species = ["o3"]
+   minHeight = 0.0		# meters
    maxHeight = 5.0e3		# meters; use 1e6 for unlimited height, -1 for surface only
    runMode = "auto"
+   userHourStride = None
 
    # default to CONUS
    latBounds = [25.0, 50.0]	# degrees
@@ -804,6 +827,8 @@ def main():
       if (pairValue[0].lower() == "species"):
          species = safeParams(pairValue[1])
 
+      if (pairValue[0].lower() == "minheight"):
+         minHeight = utilsLite.safeFloat(pairValue[1])
       if (pairValue[0].lower() == "maxheight"):
          maxHeight = utilsLite.safeFloat(pairValue[1])
 
@@ -816,6 +841,9 @@ def main():
          dates = safeParams(pairValue[1], integer=True)
       if (pairValue[0].lower() == "hours"):
          hours = safeParams(pairValue[1], numeric=True)
+
+      if (pairValue[0].lower() == "hourstride"):
+         userHourStride = utilsLite.safeFloat(pairValue[1])
 
       if (pairValue[0].lower() == "datadir"):
          dataDir = pairValue[1]
@@ -832,6 +860,7 @@ def main():
    progress("runMode = {}".format(runMode))
    progress("model = {}".format(model))
    progress("species = {}".format(species))
+   progress("minHeight = {}".format(minHeight))
    progress("maxHeight = {}".format(maxHeight))
 
    progress("latBounds = {}".format(latBounds))
@@ -846,6 +875,8 @@ def main():
    useModel = WrfChem4D.WrfChemModel()
    if (model == "waccm"):
       useModel = Waccm4D.WaccmModel()
+   if (model == "cam-chem"):
+      useModel = CamChem4D.CamChemModel()
 
    if (dataDir is not None):
       useModel.setBaseDirectory(dataDir)
@@ -857,16 +888,21 @@ def main():
       endDate = startDate + deltaHours
       startDate -= deltaHours
    else:
-      # set up time bounds
-      dateStr = "{}:{}".format(dates[0], int(hours[0]))
-      startDate = datetime.datetime.strptime(dateStr, "%Y%m%d:%H")
-      dateStr = "{}:{}".format(dates[1], int(hours[1]))
-      endDate = datetime.datetime.strptime(dateStr, "%Y%m%d:%H")
+      # set up the time bounds
+      minutes0 = int((hours[0] % 1) * 60 + 0.5)
+      minutes1 = int((hours[1] % 1) * 60 + 0.5)
+
+      dateStr = "{}:{}:{}".format(dates[0], int(hours[0]), minutes0)
+      startDate = datetime.datetime.strptime(dateStr, "%Y%m%d:%H:%M")
+      dateStr = "{}:{}:{}".format(dates[1], int(hours[1]), minutes1)
+      endDate = datetime.datetime.strptime(dateStr, "%Y%m%d:%H:%M")
 
    progress("Date range is {} to {}".format(startDate, endDate))
 
    # get time step for this model
    hourStride = useModel.getHourStride()
+   if (userHourStride is not None):
+      hourStride = userHourStride
    progress("hourStride = {}".format(hourStride))
 
    # display cells in color above certain chemical concentrations
@@ -887,6 +923,8 @@ def main():
    if (airplane is not None):
       progress("airplane = {} flying track {}"
          .format(airplaneName, airplaneTrackFile))
+
+   progress("terrainExaggeration = {}".format(terrainExaggeration))
 
    # set up how many model cells to skip between samples
    latStride = 1
@@ -1001,13 +1039,16 @@ def main():
 
       # loop through dates and times
       frame = startDate
+      units = "ppbv"
 
       while (frame <= endDate):
          progress("\nFrame time: {}".format(frame))
+         waccmData = None
 
          # locate and open WACCM model output
          filename = (useModel.BASE_DIRECTORY
-            + useModel.getFilename(frame.year, frame.month, frame.day, frame.hour))
+            + useModel.getFilename(frame.year, frame.month, frame.day,
+            frame.hour, frame.minute))
          if (not os.path.exists(filename)):
             progress("{} file {} does not exist."
                .format(useModel.getModelName(), filename))
@@ -1024,11 +1065,12 @@ def main():
             .format(chemical, useModel.getModelName(), filename))
          waccmData = useModel.readModelBox(chemical, filename, frame,
             latBounds, lonBounds, latStride, lonStride, verticalStride)
+         units = waccmData[4]
 
          # create a single 3-D visual at this frame time
          counts = createOneFrame(frame, frame + timeDelta, sphereFolders,
             cellCount, triangleCount, markCount, waccmData,
-            chemThresholds[chemIndex], maxHeight,
+            chemThresholds[chemIndex], minHeight, maxHeight,
             stageDir, chemical)
          cellCount = counts[0]
          triangleCount = counts[1]
@@ -1119,7 +1161,7 @@ def main():
 
       # draw colorbar for auto-scaled chemical thresholds
       colorbar.drawColorbar(chemical, useModel.getChemName(chemical),
-         chemThresholds[chemIndex], "ppbv", 100, stageDir)         # WRF-Chem near surface
+         chemThresholds[chemIndex], units, 100, stageDir)         # WRF-Chem near surface
 
       # create KMZ compressed archive
       kmzName = kmlBasename + ".kmz"

@@ -35,7 +35,8 @@ class WrfChemModel(Model4D.AtmosModel):
 
 
 
-   def getFilename(self, year, month, day, hour):
+   def getFilename(self, year, month, day, hour,
+      minute=0):
       subDirectory = "{:4d}{:02d}{:02d}/wrf/".format(year, month, day)
       nameOnly = ("wrfout_hourly_d01_{:4d}-{:02d}-{:02d}_{:02d}:00:00"
          .format(year, month, day, hour))
