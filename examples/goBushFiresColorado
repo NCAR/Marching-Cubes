@@ -1,0 +1,4 @@
+cd /home/drews/GoogleEarth/
+#python3 bushFires.py model=WRF-Chem species=o3 runMode=manual maxHeight=-1 latBounds=37.0,41.0 lonBounds=-109.0,-102.0 dates=20221012,20221012 hours=06,06 thresholds=1,2,3
+python3 bushFires.py model=WRF-Chem species=o3 runMode=manual maxHeight=4000 latBounds=37.0,41.0 lonBounds=-109.0,-102.0 dates=20210531,20210602 hours=00,23 dataDir=/webt/drews/GoogleEarth/FrontRange/
+echo
