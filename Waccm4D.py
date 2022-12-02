@@ -36,6 +36,12 @@ class WaccmModel(Model4D.AtmosModel):
 
 
 
+   # return the time step for this model in hours
+   def getHourStride(self):
+      return(6.0)
+
+
+
    # Read subset of WRF-Chem data over a rectangular portion of earth.
    # species = name of chemical or aerosol
    # waccmFilename = path and name of WACCM model output (NetCDF)

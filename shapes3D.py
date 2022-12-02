@@ -115,6 +115,7 @@ def createAirParcel(parcelName, saveDir):
 # Create 3D Collada model of an airplane and save it to .dae file.
 # planeName = name for the model
 #       planeName becomes the filename, with spaces replaced
+# sizeExaggeration = factor to make plane larger
 # return name of model file
 def createAirplane(planeName, saveDir,
    sizeExaggeration=200):
@@ -192,10 +193,20 @@ def createAirplane(planeName, saveDir,
    triangles.append(MarchingCubes.Triangle(wingFront, tail, topWingtip)
       .setNormals(left, left, left))
 
+   # colors are RGBA (A = alpha opacity)
    orange = [1.0, 0.647, 0.0, 1.0]
    blue = [0.0, 0.0, 1.0, 1.0]
    white = [1.0, 1.0, 1.0, 1.0]
+   cyan = [0.0, 1.0, 1.0, 1.0]
+   yellow = [1.0, 1.0, 0.0, 1.0]
+
+   # set airplane color here based on name
    daeColor = white
+   if (planeName == "GV"):
+      daeColor = cyan
+   if (planeName == "WB57"):
+      daeColor = yellow
+
    utilsCollada.writeDAEfile(triangles, daeColor, 0.0, filepath)
 
    return(filename)
@@ -205,7 +216,8 @@ def createAirplane(planeName, saveDir,
 # Read track and create as KML track along airpland flight path.
 # planeModel = name of the .dae 3D model file of airplane
 # trackFile = .ict file containing flight waypoints
-# return [track, path] as KML elements
+# verticalExaggeration = should match terrain exaggeration in Google Earth
+# return [track, path, tour] as KML elements
 def createAirplaneTrack(planeName, planeModel, trackFile,
    verticalExaggeration=1.0):
    if (False):
@@ -216,6 +228,13 @@ def createAirplaneTrack(planeName, planeModel, trackFile,
 
    progress("trackFile = {}".format(trackFile))
 
+   # there are no standard variable names within NetCDF flight tracks
+   latLonAlt = ["GGLAT", "GGLON", "GGALT"]	# NASA DC-8
+   if (planeName == "GV"):
+      latLonAlt = ["LATC", "LONC", "GGALT"]	# NSF/NCAR HIAPER Gulfstream 5
+   if (planeName == "WB57"):
+      latLonAlt = ["G_LAT_MMS", "G_LONG_MMS", "G_ALT_MMS"]	# NASA WB-57
+
    flightParts = None
    flightExtension = os.path.splitext(trackFile)[1].lower()
    if (flightExtension == ".ict"):
@@ -224,16 +243,14 @@ def createAirplaneTrack(planeName, planeModel, trackFile,
       #flightParts = readMetNavFlight(trackFile, 5*60)	# 5 minutes
    if (flightExtension == ".nc"):
       # read the NetCDF .nc file that recorded the plane flight
-      flightParts = readNetCDFFlight(trackFile, 1*60)	# 1-minute intervals
+      flightParts = readNetCDFFlight(trackFile, 1*60, latLonAlt)	# 1-minute intervals
 
    trackTimes = flightParts[0]
    lats = flightParts[1]
    lons = flightParts[2]
+   altitudes = numpy.array(flightParts[3])
 
-   # Vertical exaggeration of GE terrain does not apply to gx:Track.
-   # Other height exaggeration (100x) for air parcels should be applied here.
-   altitudes = numpy.array(flightParts[3]) * verticalExaggeration
-
+   # Google Earth tracks and paths are already exaggerated.
    trackKML = acomKml.createModelMoving(
       planeName, "Flight of research aircraft.",
       planeModel, trackTimes,
@@ -244,7 +261,16 @@ def createAirplaneTrack(planeName, planeModel, trackFile,
       planeName + " flight path", "Flight path of research aircraft.",
       lats, lons, altitudes)
 
-   return([trackKML, pathKML])
+   # Apply terrain exaggeration to tour height.
+   altitudes *= verticalExaggeration
+   #altitudes = numpy.array(altitudes) * verticalExaggeration
+
+   tourKML = acomKml.createFlightTour(
+      planeName + " tour", "Tour along the flight path.",
+      trackTimes, lats, lons, altitudes,
+      duration=120)
+
+   return([trackKML, pathKML, tourKML])
 
 
 
@@ -345,8 +371,10 @@ def readMetNavFlight(trackFileIct, timeStep=5*60):
 # Read NetCDF .nc file and extract timestamp, latitude, longitude, altitude
 # trackFileNc = full path and name of file
 # timeStep = increment at which to extract (seconds)
+# latLonAltitude = variables for [latitude, longitude, height]
 # return [timestamps, lats, lons, heights]
-def readNetCDFFlight(trackFileNc, timeStep=5*60):
+def readNetCDFFlight(trackFileNc, timeStep=5*60,
+   latLonAltitude=["GGLAT", "GGLON", "GGALT"]):
    progress("reading NetCDF file {}".format(trackFileNc))
    navInfo = [None, None, None, None]
 
@@ -361,9 +389,9 @@ def readNetCDFFlight(trackFileNc, timeStep=5*60):
 
    # retrieve the raw columns for all time steps
    navTimesAll = flightData.variables["Time_UTC"][:]
-   navLatsAll = flightData.variables["GGLAT"][:]
-   navLonsAll = flightData.variables["GGLON"][:]
-   navHeightsAll = flightData.variables["GGALT"][:]
+   navLatsAll = flightData.variables[latLonAltitude[0]][:]
+   navLonsAll = flightData.variables[latLonAltitude[1]][:]
+   navHeightsAll = flightData.variables[latLonAltitude[2]][:]
 
    flightData.close()
 

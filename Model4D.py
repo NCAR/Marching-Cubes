@@ -51,6 +51,8 @@ class AtmosModel:
          return("CO fires")
       if (species.lower() == "extinctdn"):
          return("Aerosol extinction")
+      if (species.lower() == "CO"):
+         return("Carbon monoxide")
 
       return("ChemName???")
 

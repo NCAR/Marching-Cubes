@@ -134,7 +134,6 @@ THERMOSPHERE = 4
 # Place new surface placemark into the correct layer of the atmosphere.
 # surfaceMark = newly created KML placemark representing 3-D WACCM surface
 # layerIndex = which layer; with 0=surface, 1=troposphere, etc.
-# chemValue = chemical concentration
 # myLayerFolders = slabMark is appended to one of these...
 # subFolderIndex = ...within this threshold/color sub-folder
 def surfaceIntoLayer(surfaceMark, layerIndex, myLayerFolders,
@@ -155,7 +154,7 @@ def heightToLayer(zIndex, height):
 
    if (zIndex == 0):
       targetLayer = SURFACE
-   elif (height < 10.0):
+   elif (height < 15.0):
       targetLayer = TROPOSPHERE
    elif (height < 50.0):
       targetLayer = STRATOSPHERE
@@ -243,7 +242,7 @@ def createOneFrame(startTime, endTime, layerFolders, cellCount,
    # collect the WACCM data
    chemValues = myWaccmData[0]
    if (False):
-      # bogus - force a surface layer at 3.0
+      # force a surface layer at 3.0 for testing of terrain following
       chemValues[0, :] = 2.5
       chemValues[1, :] = 3.5
    #progress("chemValues shape = {}".format(chemValues.shape))
@@ -806,10 +805,8 @@ def main():
    # allow caller to specify chemical threshold values
    manualThresholds = None
 
-   # default to no airplane track
-   airplane = None
-   airplaneName = None
-   airplaneTrackFile = None
+   # default to no airplane research flights
+   airplanes = []
 
    # retrieve the command-line arguments, if any
    for argPair in sys.argv:
@@ -852,9 +849,8 @@ def main():
          manualThresholds = safeParams(pairValue[1], numeric=True)
 
       if (pairValue[0].lower() == "airplane"):
-         airplane = pairValue[1].split(",")
-         airplaneName = airplane[0]
-         airplaneTrackFile = airplane[1]
+         oneFlight = pairValue[1].split(",")
+         airplanes.append(oneFlight)
 
    # Display the command-line arguments just received.
    progress("runMode = {}".format(runMode))
@@ -920,9 +916,9 @@ def main():
    for chem, thresh, units in zip(species, chemThresholds, chemUnits):
       progress("\t{} {} {}".format(chem, thresh, units))
 
-   if (airplane is not None):
+   for flight in airplanes:
       progress("airplane = {} flying track {}"
-         .format(airplaneName, airplaneTrackFile))
+         .format(flight[0], flight[1]))
 
    progress("terrainExaggeration = {}".format(terrainExaggeration))
 
@@ -1133,25 +1129,36 @@ def main():
          createRulers(rulerFolder, actualLatBounds, actualLonBounds, imageFilename)
          shutil.copy(imageFilename, stageDir)
 
-      # create research airplane flying along track
-      if (airplane is not None):
+      # set up for research flight paths
+      if (len(airplanes) > 0):
          airplaneFolder = acomKml.folder("Research flights")
          kmlDoc.append(airplaneFolder)
+
+      # create research airplane flying along track
+      firstFlight = True
+      for flight in airplanes:
+         airplaneName = flight[0]
+         airplaneTrackFile = flight[1]
 
          planeFile = shapes3D.createAirplane(airplaneName, stageDir)
          progress("planeFile = {}".format(planeFile))
 
          # don't show the pushpins
-         dontShowKML = acomKml.createDontShowStyle(idStr="airplane", lineWidth=5)
-         kmlDoc.append(dontShowKML)
-         fixedPathKML = acomKml.createFixedPathStyle()
-         kmlDoc.append(fixedPathKML)
+         if (firstFlight):
+            dontShowKML = acomKml.createDontShowStyle(idStr="airplane", lineWidth=5)
+            kmlDoc.append(dontShowKML)
+            fixedPathKML = acomKml.createFixedPathStyle()
+            kmlDoc.append(fixedPathKML)
 
          # create airplane track and fixed path
          airplaneKMLs = shapes3D.createAirplaneTrack(
-            airplaneName, planeFile, airplaneTrackFile)
+            airplaneName, planeFile, airplaneTrackFile,
+            terrainExaggeration)
          airplaneFolder.append(airplaneKMLs[0])
          airplaneFolder.append(airplaneKMLs[1])
+         airplaneFolder.append(airplaneKMLs[2])
+
+         firstFlight = False
 
       # write the formatted kml file
       acomKml.indent(kmlRoot)

@@ -11,6 +11,8 @@
 
 import xml.etree.ElementTree as ET
 import sys
+import datetime
+import math
 
 
 
@@ -299,7 +301,7 @@ def createImageWall(modelFile,
 
 
 # Create style to hide the yellow pushpins.
-# id = default ID string; override for airplanes
+# idStr = default ID string; override for airplanes
 # lineWidth = width of path, probably in points
 def createDontShowStyle(idStr="dontShow", lineWidth=1):
    styleKML = kmlElement("Style")
@@ -478,6 +480,25 @@ def populateLookAt(towardLat, towardLon, towardAlt,
 
 
 
+# Create and fill a KML Camera tag.
+# atLat, atLon, atAlt = camera is located at these coordinates
+# heading = compass angle where 0 = due North, 90 = east
+# return KML tag suitable for tour
+def populateCamera(atLat, atLon, atAlt, heading):
+
+   camera = kmlElement("Camera")
+   camera.append(kmlElement("latitude", "{}".format(atLat)))
+   camera.append(kmlElement("longitude", "{}".format(atLon)))
+   camera.append(kmlElement("altitude", "{}".format(atAlt)))
+   camera.append(kmlElement("altitudeMode", "absolute"))
+
+   camera.append(kmlElement("heading", "{}".format(heading)))	# 0 is North
+   camera.append(kmlElement("tilt", "{}".format(80.0)))		# 0 is straight down
+
+   return(camera)
+
+
+
 # Create hovering tour between several vantage points.
 # We slowly move from start to end position.
 # myFolder = place the tour within here
@@ -491,7 +512,7 @@ def createHoverTour(myFolder, whens,
    duration):
 
    numWaypoints = len(whens)
-   progress("numWaypoints = {}".format(numWaypoints))
+   progress("Hover tour numWaypoints = {}".format(numWaypoints))
 
    # set up the time intervals
    firstTimeStep = 2.0	# seconds in wall-clock time
@@ -540,4 +561,92 @@ def createHoverTour(myFolder, whens,
       flyTo.append(lookAt)
 
    return
+
+
+
+# Create timed tour along a flight path.
+# The view will look out the cockpit front window.
+# flightName = name for this tour
+# flightDescription = text description of this tour
+# times[] = date-time stamps of tour waypoints
+# lats[], lons[], alts[] = waypoint locations
+# duration = how many seconds this tour should take
+# holdFinal = remain in final location for one more time frame
+# idStr = default ID string; override for airplanes
+# return KML section for inclusion in some folder
+def createFlightTour(flightName, flightDescription,
+   times, lats, lons, alts,
+   duration=60, holdFinal=True, idStr="dontShow"):
+
+   numWaypoints = len(times)
+   progress("Flight tour numWaypoints = {} over {} seconds"
+      .format(numWaypoints, duration))
+
+   # set up the time intervals
+   firstTimeStep = 5.0	# seconds in wall-clock time
+   timeStep = (duration - firstTimeStep) / (numWaypoints - 1)
+   progress("timeStep = {}, then {} seconds".format(firstTimeStep, timeStep))
+
+   # set up the flying tour
+   tour = kmlElement("gx:Tour")
+   progress("Flight tour from {} to {}".format(times[0], times[-1]))
+
+   tourName = kmlElement("name", flightName)
+   tour.append(tourName)
+
+   startStr = times[0].strftime("%Y%m%d-%H%M")
+   endStr = times[-1].strftime("%Y%m%d-%H%M")
+   tourDescStr = flightDescription + " {} to {} UTC".format(startStr, endStr)
+   tourDesc = kmlElement("description", tourDescStr)
+   tour.append(tourDesc)
+
+   # the PlayList is a series of FlyTo elements
+   playlist = kmlElement("gx:Playlist")
+   tour.append(playlist)
+
+   firstWaypoint = True
+   altitudeDelta = 4000		# chase plane is slightly higher
+   camHeading = 0.0
+   for ti in range(len(times)):
+      when = times[ti]
+      lat = lats[ti]
+      lon = lons[ti]
+      alt = alts[ti]
+
+      # look ahead to the next waypoint
+      nextLat = None
+      nextLon = None
+      if (ti + 1 < len(times)):
+         nextLat = lats[ti+1]
+         nextLon = lons[ti+1]
+
+      flyTo = kmlElement("gx:FlyTo")
+      playlist.append(flyTo)
+
+      # move smoothly to the first point
+      if (firstWaypoint):
+         flyTo.append(kmlElement("gx:duration", "{}".format(firstTimeStep)))
+         flyTo.append(kmlElement("gx:flyToMode", "bounce"))
+         firstWaypoint = False
+      else:
+         flyTo.append(kmlElement("gx:duration", "{}".format(timeStep)))
+         flyTo.append(kmlElement("gx:flyToMode", "smooth"))
+
+      # point camera toward the next waypoint
+      if (nextLat is not None):
+         if (lat != nextLat and lon != nextLon):
+            camHeading = math.atan2(nextLon - lon, nextLat - lat) * 180.0 / math.pi
+      camera = populateCamera(lat, lon, alt + altitudeDelta, camHeading)
+
+      # chase plane flies slightly behind the research aircraft
+      timeStamp = kmlElement("gx:TimeStamp")
+      timeDelta = datetime.timedelta(seconds=3*60)
+      whenCamera = when + timeDelta
+      timeStamp.append(kmlElement("when",
+         whenCamera.strftime("%Y-%m-%dT%H:%M:%SZ")))
+      camera.append(timeStamp)
+
+      flyTo.append(camera)
+
+   return(tour)
 

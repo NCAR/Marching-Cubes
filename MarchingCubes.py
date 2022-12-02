@@ -797,6 +797,26 @@ def renderCube(xLocation, yLocation, zLocation, chemValues,
    zTemp[:,:,:] = zLocation[zIndex:zIndex+2, yIndex:yIndex+2, xIndex:xIndex+2]
    #progress("zTemp = {}".format(zTemp))
 
+   if (False):
+      # create small gaps between grid cells
+      gapFractionHorz = 1.0 / 100.0
+      gapFractionVert = 1.0 / 20.0
+      xSpan = xTemp[0,0,1] - xTemp[0,0,0]
+      ySpan = yTemp[0,1,0] - yTemp[0,0,0]
+      zSpan = zTemp[1,0,0] - zTemp[0,0,0]
+
+      xMargin = xSpan * gapFractionHorz
+      yMargin = ySpan * gapFractionHorz
+      zMargin = zSpan * gapFractionVert
+
+      # create a slightly smaller cube in all dimensions
+      xTemp[:,:,0] += xMargin
+      xTemp[:,:,1] -= xMargin
+      yTemp[:,0,:] += yMargin
+      yTemp[:,1,:] -= yMargin
+      zTemp[0,:,:] += zMargin
+      zTemp[1,:,:] -= zMargin
+
    gridCell.setVerticesXYZ(xTemp, yTemp, zTemp)
 
    # assign all the vertex chemical values
