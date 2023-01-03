@@ -52,6 +52,20 @@ class Vertex:
    def getValue(self):
       return(self.value)
 
+   # Convert absolute lat-lon to km relative to 3D model origin.
+   # Model origin is probably at the center of the WRF-Chem domain.
+   # originVertex = center of the model in earth coordinates (lat, lon, alt)
+   def latLonToKm(self, originVertex):
+      kmVertex = utilsCollada.sphericalToCartesian(
+         [originVertex.y, originVertex.x, originVertex.z],
+         [self.y, self.x, self.z])
+
+      self.x = kmVertex[utilsCollada.CART_X]
+      self.y = kmVertex[utilsCollada.CART_Y]
+      self.z = kmVertex[utilsCollada.CART_Z]
+
+      return
+
 
 
 # A grid cell in 3D space. The coordinates are integers.
@@ -651,9 +665,11 @@ class Cube:
    # Calculate normal vectors for every new triangle.
    # Mark all traversed edge crossings as visited.
    # homeCrossing = begin crawl here
+   # gridLines = create polygons around the edge of each interior surface
    # return list of Triangles around the crawl
-   def crawlOneEdgeCrossing(self, homeCrossing):
+   def crawlOneEdgeCrossing(self, homeCrossing, gridLines = True):
       triList = []
+      lineList = []
 
       # step around the perimeter to make a polygon
       myCrossing = homeCrossing
@@ -677,6 +693,9 @@ class Cube:
          myCrossing = nextCrossing
 
       #progress("polygon = {}".format(polygon))
+      #for poly in polygon:
+      #   progress("\tx={} y={} z={}".format(poly.x, poly.y, poly.z))
+
       if (len(polygon) > 6):
          # this case represents an extreme saddle
          progress("Note: polygon beginning at {} has {} points."
@@ -690,23 +709,38 @@ class Cube:
          #progress("No need for reversal.")
          pass
 
+      if (gridLines):
+         # record this perimeter, making sure to return to first vertex
+         # Note: This step will actually create twice as many grid
+         # lines as needed for the wireframe. This is because each
+         # line segment (of the perimeter) exactly matches another line
+         # segment on the adjacent cube face. One could optimize the
+         # line segments by only creating them on the three cube faces
+         # closest to the origin (and the final outer faces of the domain).
+         # Carl Drews - December 21, 2022
+         perimeter = copy.deepcopy(polygon)
+         perimeter.append(copy.deepcopy(polygon[0]))
+         lineList.append(perimeter)
+
       if (len(polygon) == 3):
          # simple case - take those three vertices
          oneTriangle = Triangle(polygon[0], polygon[1], polygon[2])
          triList.append(oneTriangle)
-         return(triList)
+         return(triList, lineList)
 
       # divide polygon into several triangles anchored at center point
       polyTriangles = traversePolygon(polygon)
       triList.extend(polyTriangles)
-      return(triList)
+      return(triList, lineList)
 
 
    # Follow neighbors of all edge crossings. Build list of
    # triangles including their normal vectors.
-   # return list of Triangles for this cube
-   def crawlEdgeCrossings(self):
+   # gridLines = create polygons around the edge of each interior surface
+   # return list of Triangles for this cube, and list of 3D polygons
+   def crawlEdgeCrossings(self, gridLines=True):
       cubeTriangles = []
+      cubeLines = []
       for z in range(3):
          for y in range(3):
             for x in range(3):
@@ -718,17 +752,20 @@ class Cube:
                if (part.visited):
                   continue
 
-               partTriangles = self.crawlOneEdgeCrossing(part)
+               partTriangles, partLines = self.crawlOneEdgeCrossing(part, gridLines)
                cubeTriangles.extend(partTriangles)
+               cubeLines.extend(partLines)
 
-      return(cubeTriangles)
+      return(cubeTriangles, cubeLines)
 
 
    # Calculate and return isosurface within this cube.
    # surfaceValue = build surface along this chemical concentration
+   # gridLines = create polygons around the edge of each interior surface
    # return list of triangles
-   def calculateIsosurface(self, surfaceValue):
+   def calculateIsosurface(self, surfaceValue, gridLines=True):
       triList = []
+      lineList = []
 
       if (False):
          # test with a simple slanted triangle
@@ -750,10 +787,12 @@ class Cube:
       self.resolveFaceContours()
       self.checkCrossingNeighbors()
 
-      # crawl the edge crossings to create triangles
-      triList.extend(self.crawlEdgeCrossings())
+      # crawl the edge crossings to create triangles and contour lines
+      triangles, lines = self.crawlEdgeCrossings(gridLines)
+      triList.extend(triangles)
+      lineList.extend(lines)
 
-      return(triList)
+      return(triList, lineList)
 
 
 
@@ -767,9 +806,12 @@ class Cube:
 # chemValues[z,y,x] = chemical values in the entire 3D space
 # xIndex, yIndex, zIndex = lower southwest corner
 # surfaceValue = create triangulated surface along this value
-# return list of one or more triangles
+# gridLines = create polygons around the edge of each interior surface
+#		These will become contour lines along each grid cell.
+# return list of one or more triangles, and list of one or more perimeter lines
 def renderCube(xLocation, yLocation, zLocation, chemValues,
-   xIndex, yIndex, zIndex, surfaceValue):
+   xIndex, yIndex, zIndex, surfaceValue,
+   gridLines=True):
 
    # verify what we received
    #progress("xLocation shape = {}".format(xLocation.shape))
@@ -831,7 +873,7 @@ def renderCube(xLocation, yLocation, zLocation, chemValues,
    #progress("gridCell cube = {}".format(gridCell.toString()))
 
    # calculate and retrieve triangulated surface at isoValue
-   triList = gridCell.calculateIsosurface(surfaceValue)
+   triList, lineList = gridCell.calculateIsosurface(surfaceValue, gridLines)
 
-   return(triList)
+   return(triList, lineList)
 

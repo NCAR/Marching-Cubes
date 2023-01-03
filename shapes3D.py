@@ -213,7 +213,7 @@ def createAirplane(planeName, saveDir,
 
 
 
-# Read track and create as KML track along airpland flight path.
+# Read track and create as KML track along airplane flight path.
 # planeModel = name of the .dae 3D model file of airplane
 # trackFile = .ict file containing flight waypoints
 # verticalExaggeration = should match terrain exaggeration in Google Earth
@@ -248,7 +248,7 @@ def createAirplaneTrack(planeName, planeModel, trackFile,
    trackTimes = flightParts[0]
    lats = flightParts[1]
    lons = flightParts[2]
-   altitudes = numpy.array(flightParts[3])
+   altitudes = numpy.array(flightParts[3], dtype="float")
 
    # Google Earth tracks and paths are already exaggerated.
    trackKML = acomKml.createModelMoving(
@@ -263,7 +263,6 @@ def createAirplaneTrack(planeName, planeModel, trackFile,
 
    # Apply terrain exaggeration to tour height.
    altitudes *= verticalExaggeration
-   #altitudes = numpy.array(altitudes) * verticalExaggeration
 
    tourKML = acomKml.createFlightTour(
       planeName + " tour", "Tour along the flight path.",

@@ -27,7 +27,7 @@ def progress(message, endString='\n'):
 
 # Write DAE file containing triangles.
 # No texture, just a color and opacity.
-# triangles = list of MarchingCubes.triangle objects
+# triangles = list of MarchingCubes.Triangle objects
 # colorRBGA = array of normalized rgba values[0.0-1.0]
 # transparency = float 0.0-1.0, from 100% opaque to entirely clear
 # filename = path and name.dae of file
@@ -103,6 +103,149 @@ def writeDAEfile(triangles, colorRGBA, transparency, filename):
    # collect triangles into the geometry
    triSet1 = geom.createTriangleSet(indexes1, input_list, "material_0_1")
    geom.primitives.append(triSet1)
+   mesh.geometries.append(geom)
+
+   # set up the surface material
+   effect1 = (collada.material.Effect("material_0_1-effect",
+      [], "phong",
+      emission=(0.0, 0.0, 0.0, 1),
+      ambient=(0.05, 0.05, 0.05, 1),
+      diffuse=(colorRGBA[0], colorRGBA[1], colorRGBA[2], colorRGBA[3]),
+      specular=(0.0, 0.0, 0.0, 1.0),
+      shininess=16.0,
+      reflective=(0.0, 0.0, 0.0, 0.0),
+      transparent=None,
+      transparency=transparency,
+      double_sided=True))
+
+   material1 = collada.material.Material("material_0_1ID", "material_0_1", effect1)
+
+   mesh.effects.append(effect1)
+   mesh.materials.append(material1)
+
+   # create material and geometry node
+   matNode1 = collada.scene.MaterialNode("material_0_1", material1, inputs=[])
+   geomNode = collada.scene.GeometryNode(geom, [matNode1])
+
+   # go ahead - make a scene
+   node = collada.scene.Node("Model", children=[geomNode])
+   myScene = collada.scene.Scene("ACOM_Scene", [node])
+   mesh.scenes.append(myScene)
+   mesh.scene = myScene		# bogus - do we need both?
+
+   # write the Collada structure to DAE file
+   mesh.write(filename)
+
+   return
+
+
+
+# Write DAE file containing multi-segment polylines.
+# No texture, just a color and opacity.
+# polyLines = list of series of MarchingCubes.Vertex objects
+# colorRBGA = array of normalized rgba values[0.0-1.0]
+# transparency = float 0.0-1.0, from 100% opaque to entirely clear
+# filename = path and name.dae of file
+# polyClosed = polylines are closed circles connecting back to first vertex
+def writeDAElines(polyLines, colorRGBA, transparency, filename,
+   polyClosed=True):
+   numLines = len(polyLines)
+   progress("Writing DAE Collada file {} with {} multi-segment polylines."
+      .format(filename, numLines))
+
+   if (False):
+      # diagnostics
+      for pli, polyLine in enumerate(polyLines):
+         progress("Line {} x y z: ".format(pli), endString='')
+         for oneVertex in polyLine:
+            progress("{} {} {}, ".format(oneVertex.x, oneVertex.y, oneVertex.z), endString='')
+         progress("\n")
+
+   # set up the triangular mesh
+   mesh = collada.Collada()
+
+   # set up the asset section
+   axis = collada.asset.UP_AXIS.Z_UP
+   myContributor = collada.asset.Contributor(author="Carl Drews")
+   assetSection = collada.asset.Asset(
+      title="ACOM 3D model with color and opacity.",
+      contributors=[myContributor],
+      unitname="kilometer", unitmeter=1000,
+      upaxis=axis)
+   mesh.assetInfo = assetSection
+   #progress("mesh dir = {}".format(dir(mesh)))
+   #progress("mesh vars = {}".format(vars(mesh)))
+   #progress("assetInfo = {}".format(mesh.assetInfo))
+
+   # count up the number of vertices
+   totalVertices = 0
+   for polyLine in polyLines:
+      totalVertices += len(polyLine)
+      #progress("{} ".format(len(polyLine)), endString='')
+   progress("totalVertices = {}".format(totalVertices))
+
+   # set up xyz coordinates of all the polyline vertices
+   coordsPerVertex = 3		# dimensions x, y, z
+   mesh1Position = numpy.zeros(totalVertices * coordsPerVertex)
+   pi = 0
+   for polyLine in polyLines:
+      numVertices = len(polyLine)
+
+      # extract xyz coordinates of one polyline
+      polyCoords = []
+      for vertex in polyLine:
+         polyCoords.extend(vertex.getCoordinates())
+
+      # append those coordinates to long array of coordinates
+      mesh1Position[pi:pi+numVertices * coordsPerVertex] = polyCoords
+      pi += numVertices * coordsPerVertex
+   #progress("mesh1Position = {}".format(mesh1Position))
+
+   # convert positions into source
+   mesh1Position_src = collada.source.FloatSource("mesh1-geometry-position",
+      mesh1Position, ('X', 'Y', 'Z'))
+
+   # set up the geometry
+   geom = collada.geometry.Geometry(mesh, "mesh1-geometry", "mesh1-geometry",
+      [mesh1Position_src])
+
+   # create input list of vertex positions
+   input_list = collada.source.InputList()
+   input_list.addInput(0, 'VERTEX', "#mesh1-geometry-position")
+
+   # set up indexes into the polyLine coordinates
+   numSegments = totalVertices - numLines	# polyline endpoints are not shared . . .
+   if (polyClosed):
+      numSegments += numLines			# . . . unless polyline loops back to start
+   numIndexes = numSegments * 2			# each segment has two endpoints
+   indexes1 = numpy.zeros(numIndexes, dtype=int)
+
+   # step from segment to segment, re-using coordinates along the way
+   ix = 0
+   startIx = 0
+   for polyLine in polyLines:
+      numVertices = len(polyLine)
+      for vi in range(numVertices - 1):
+         # set up adjacent indexes
+         indexes1[ix] = startIx + vi
+         ix += 1
+         indexes1[ix] = startIx + vi + 1
+         ix += 1
+
+      if (polyClosed):
+         # close polygon back to polyline start
+         indexes1[ix] = startIx + numVertices - 1
+         ix += 1
+         indexes1[ix] = startIx
+         ix += 1
+
+      startIx += numVertices
+
+   #progress("indexes1 size {} = {}".format(len(indexes1), indexes1))
+
+   # collect triangles into the geometry
+   polySet1 = geom.createLineSet(indexes1, input_list, "material_0_1")
+   geom.primitives.append(polySet1)
    mesh.geometries.append(geom)
 
    # set up the surface material

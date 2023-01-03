@@ -37,7 +37,10 @@ import shutil
 
 # Google Earth -> Tools -> Options -> 3D View -> Terrain -> Elevation Exaggeration
 terrainExaggeration = 3.0	# set within Google Earth
+#terrainExaggeration = 10.0	# Google Earth maximum exaggeration is 3
 heightExaggeration = 10.0	# set here for altitude of model slabs above terrain
+
+metersPerKm = 1000.0	# kilometers to meters
 
 
 
@@ -83,44 +86,6 @@ def includeSlab(varValues,
       progress("numLess = {}   numGreater = {}".format(numLess, numGreater))
 
    return(numLess > 0 and numGreater > 0)
-
-
-
-# Make sure that longitude is in range(-180, 180) for Google Earth.
-def wrapLongitude(rawLongitude):
-   if (rawLongitude <= 180.0):
-      return(rawLongitude)
-
-   return(rawLongitude - 360.0)
-
-
-
-# Display one WACCM surface as a 3-D set of triangles,
-# using the Placemark tag of Google Earth.
-# surfaceName = short identifying string
-# surfaceCount = integer used to create unique ID
-# latitude, longitude = horizontal location of slab
-# height = altitude of slab in meters above sea level
-# latSize, lonSize = span of slab in degrees
-# heightSize = height of slab in meters
-# value = chemical concentration of slab
-# startTime, endTime = time window in which slab is visible
-# chemColorValues = minimum concentrations for green, yellow, and red
-# heading = rotation right of due North
-# return the KML placemark created
-def renderSurfaceKML(surfaceName, surfaceID,
-   latitude, longitude, height,
-   value, startTime, endTime,
-   chemColorValues, heading=0):
-
-   k = 1000
-   myMark = acomKml.placemark(surfaceName, surfaceID,
-      latitude, wrapLongitude(longitude), height,
-      1.0, 1.0, 1.0,
-      "{}.dae".format(surfaceName),
-      startTime, endTime, heading)
-
-   return(myMark)
 
 
 
@@ -217,12 +182,26 @@ def isoColor(isoIndex):
 
 
 
+# Create safe units string for this chemical value.
+# modelUnits = string from the original WACCM or WRF-Chem output
+# chemValue = chemical value expressed in those units
+def isoValueUnits(modelUnits, chemValue):
+   safeUnits = modelUnits.replace("/", "_per_")		# safe for filenames
+   isoValueStr = "{:.0f}".format(chemValue)
+   if (chemValue < 1.0):
+      isoValueStr = "{:.1e}".format(chemValue)
+
+   return((safeUnits, isoValueStr))
+
+
+
 # Create placemarks within one time-step of the animation.
 # startTime, endTime = time bounds of the frame
 # layerFolders = KML folders for each layer of the atmosphere,
 #                 each containing many time steps
 # cellCount = count of grid cells that cross the isosurface
 # triangleCount = count of triangles created so far
+# lineCount = count of multi-segment grid/contour lines created so far
 # markCount = count of placemarks created so far
 # myWaccmData = tuple of [values, lats, lons, heights]
 #		values = chemical concentration in 3-D space
@@ -233,11 +212,13 @@ def isoColor(isoIndex):
 # maxPlotHeight = create slabs up to this height above sea level (meters)
 # stageDirectory = where to write the .DAE Collada files created
 # species = looking at this chemical compound
-# return updated [cellCount, triangleCount, markCount]
+# gridLines = create 3D grid/contour lines in a cage around the surface
+# return updated [cellCount, triangleCount, lineCount, markCount]
 def createOneFrame(startTime, endTime, layerFolders, cellCount,
-   triangleCount, markCount, myWaccmData, chemDivisions,
+   triangleCount, lineCount, markCount, myWaccmData, chemDivisions,
    minPlotHeight, maxPlotHeight,
-   stageDirectory, species):
+   stageDirectory, species,
+   gridLines=True):
 
    # collect the WACCM data
    chemValues = myWaccmData[0]
@@ -311,11 +292,14 @@ def createOneFrame(startTime, endTime, layerFolders, cellCount,
          continue
 
       # derive one isosurface, separated into layers of the atmosphere
-      surfaceInfo = createOneSurface(chemValues, lats, lons, heights, units, ground,
-         isoValue, minPlotHeight, maxPlotHeight, layerFolders, isoIndex)
+      surfaceInfo = createOneSurface(chemValues, lats, lons, heights,
+         units, ground, isoValue, minPlotHeight, maxPlotHeight,
+         layerFolders, isoIndex, gridLines)
       cellCount += surfaceInfo[0]
       triangleCount += surfaceInfo[1]
-      layers = surfaceInfo[2]
+      lineCount += surfaceInfo[2]
+      layers = surfaceInfo[3]
+      lineList = surfaceInfo[4]
 
       # write the DAE Collada files now
       yearMonthDay = startTime.strftime("%Y%m%d")
@@ -345,10 +329,7 @@ def createOneFrame(startTime, endTime, layerFolders, cellCount,
          #progress("First triangle in km = {}\n{}".format(triList[0], triList[0].toString()))
 
          # filename goes into placemark, so save it
-         safeUnits = units.replace("/", "_per_")		# safe for filenames
-         isoValueStr = "{:.0f}".format(isoValue)
-         if (isoValue < 1.0):
-            isoValueStr = "{:.1e}".format(isoValue)
+         safeUnits, isoValueStr = isoValueUnits(units, isoValue)
 
          daeNameOnly = ("{}-{}-{}-{}{}-{}.dae"
             .format(species, yearMonthDay, hourMinute, isoValueStr, safeUnits,
@@ -361,13 +342,67 @@ def createOneFrame(startTime, endTime, layerFolders, cellCount,
 
          # create the corresponding KML placemark for that surface
          daeNameOnly = os.path.splitext(daeNameOnly)[0]
-         surfaceMark = renderSurfaceKML(daeNameOnly, markCount,
+         surfaceMark = acomKml.renderSurfaceKML(daeNameOnly, markCount,
             centerLat, centerLon, 0.0,
             isoValue, startTime, endTime, chemDivisions)
          surfaceIntoLayer(surfaceMark, atmosLayer, layerFolders, isoIndex)
          markCount += 1
 
-   return([cellCount, triangleCount, markCount])
+         # create the corresponding placemark for grid lines over that surface
+         # The KML and DAE cases here are mutually exclusive because
+         # the lines are modified during vertical exaggeration.
+         if (gridLines and False):
+            # Implement the wireframe as KML <LineString> elements.
+
+            # Apply km-to-meters to match Google Earth meter units for KML,
+            # and make adjustment for any exaggeration > Google Earth 3.
+            gridExaggeration = metersPerKm * (terrainExaggeration / 3.0)
+
+            # loop through the multi-segment lines
+            for oneLine in lineList[atmosLayer]:
+               for oneVertex in oneLine:
+                  oneVertex.z *= gridExaggeration
+
+            # create a lot of KML LineStrings
+            gridNameOnly = daeNameOnly + "-grid"
+            gridMark = acomKml.renderGridKML(gridNameOnly, markCount,
+               lineList[atmosLayer], startTime, endTime)
+            surfaceIntoLayer(gridMark, atmosLayer, layerFolders, isoIndex)
+            markCount += 1
+
+         if (gridLines and True):
+            # Implement the wireframe as a 3D COLLADA model saved to a .DAE file;
+            # the many grid lines will be expressed in a <lines> element.
+
+            # loop through the multi-segment lines
+            for oneLine in lineList[atmosLayer]:
+               for oneVertex in oneLine:
+                  # apply vertical exaggeration to the Z-coordinates
+                  oneVertex.z *= terrainExaggeration
+
+                  # Curve the vertex coordinates down from the origin.
+                  oneVertex.latLonToKm(centerCoords)
+
+            # filename goes into placemark, so save lines in COLLADA file
+            safeUnits, isoValueStr = isoValueUnits(units, isoValue)
+
+            daeNameOnly = ("{}-{}-{}-{}{}-{}-grid.dae"
+               .format(species, yearMonthDay, hourMinute, isoValueStr, safeUnits,
+               layerAbbrev(atmosLayer)))
+            daePathName = stageDirectory + daeNameOnly
+            daeColor = [[1, 1, 1, 1], 0.0]	# white, opaque
+            utilsCollada.writeDAElines(lineList[atmosLayer],
+               daeColor[0], daeColor[1], daePathName)
+
+            # create the corresponding KML placemark for that wireframe
+            daeNameOnly = os.path.splitext(daeNameOnly)[0]
+            surfaceMark = acomKml.renderSurfaceKML(daeNameOnly, markCount,
+               centerLat, centerLon, 0.0,
+               isoValue, startTime, endTime, chemDivisions)
+            surfaceIntoLayer(surfaceMark, atmosLayer, layerFolders, isoIndex)
+            markCount += 1
+
+   return([cellCount, triangleCount, lineCount, markCount])
 
 
 
@@ -382,12 +417,16 @@ def createOneFrame(startTime, endTime, layerFolders, cellCount,
 # maxPlotHeight = go up to this level and no higher
 # layerFolders = KML folders for each layer of the atmosphere
 # thresholdIndex = which isoValue within the atmospheric layer
-# return array of [cells, triangles, layers]
+# gridLines = create 3D grid/contour lines in a cage around the surface
+# return array of [cells, triangles, lines, triLayers, lineLayers]
 #	cells = number of cells that intersect the surface
 #	triangles = how many triangles created here
-#	layers = list of triangles created for each atmospheric layer
+#	lines = how many multi-segment grid lines created here
+#	triLayers = list of triangles created for each atmospheric layer
+#	lineLayers = list of grid lines created for each atmospheric layer
 def createOneSurface(chemValues, lats, lons, heights, units, ground,
-   isoValue, minPlotHeight, maxPlotHeight, layerFolders, thresholdIndex):
+   isoValue, minPlotHeight, maxPlotHeight, layerFolders, thresholdIndex,
+   gridLines=True):
    progress("Creating isoSurface at {} {}.".format(isoValue, units))
 
    # bogus - flatten the model layers for testing
@@ -401,8 +440,11 @@ def createOneSurface(chemValues, lats, lons, heights, units, ground,
 
    cellCount = 0
    triangleCount = 0
+   lineCount = 0
+
    # begin with a layer list of empty triangle lists
    trianglesInLayer = [ [] for _ in range(len(layerFolders)) ]
+   linesInLayer = [ [] for _ in range(len(layerFolders)) ]
 
    for z in range(0, chemValues.shape[0] - 1):
       if (maxPlotHeight <= 0.0 and z > 0):
@@ -434,9 +476,9 @@ def createOneSurface(chemValues, lats, lons, heights, units, ground,
             #progress("heights = {}".format(heights[:, y, x]))
 
             # represent isosurface inside grid cell with triangles
-            isoTriangles = MarchingCubes.renderCube(
+            isoTriangles, isoLines = MarchingCubes.renderCube(
                lons, lats, heights, chemValues,
-               x, y, z, isoValue)
+               x, y, z, isoValue, gridLines)
             triangleCount += len(isoTriangles)
             #progress("First triangle = {}\n{}".format(isoTriangles[0], isoTriangles[0].toString()))
             #progress("Second triangle = {}\n{}".format(isoTriangles[1], isoTriangles[1].toString()))
@@ -444,6 +486,10 @@ def createOneSurface(chemValues, lats, lons, heights, units, ground,
             # assign triangles to one of the atmospheric layers
             layerIndex = heightToLayer(z, heights[z, y, x])
             trianglesInLayer[layerIndex].extend(isoTriangles)
+
+            # assign lines to one of the atmospheric layers
+            lineCount += len(isoLines)
+            linesInLayer[layerIndex].extend(isoLines)
 
             #break	# bogus
          #if (triangleCount > 0):
@@ -454,9 +500,10 @@ def createOneSurface(chemValues, lats, lons, heights, units, ground,
    # display what we found
    progress("For each atmospheric layer, we have:")
    layerIndex = 0
-   for tris in trianglesInLayer:
+   for tris, lines in zip(trianglesInLayer, linesInLayer):
       if (len(tris) > 0):
-         progress("\t{} has {} triangles: ".format(layerIndex, len(tris)))
+         progress("\t{} has {} triangles and {} perimeter lines: "
+            .format(layerIndex, len(tris), len(lines)))
       layerIndex += 1
 
    if (False):
@@ -473,7 +520,7 @@ def createOneSurface(chemValues, lats, lons, heights, units, ground,
 
    progress("The isosurface passed through {} grid cells.".format(cellCount))
 
-   return([cellCount, triangleCount, trianglesInLayer])
+   return([cellCount, triangleCount, lineCount, trianglesInLayer, linesInLayer])
 
 
 
@@ -522,6 +569,7 @@ kmPerDegree = 111.32	# kilometers per degree at equator
 def viewCenter(latBox, lonBox):
    centerLat = (latBox[0] + latBox[1]) / 2.0
    centerLon = (lonBox[0] + lonBox[1]) / 2.0
+   centerLon = acomKml.wrapLongitude(centerLon)
 
    latRange = (latBox[1] - latBox[0]) / 2.0
    latRange *= kmPerDegree * 1000.0		# degrees to meters
@@ -546,8 +594,6 @@ def viewCenter(latBox, lonBox):
 # runMode = "manual" or "auto"
 def createFlight(myFolder, startWhen, endWhen, latBox, lonBox,
    runMode):
-
-   metersPerKm = 1000.0	# kilometers to meters
 
    # calculate center of box, maybe use for LookAt target
    latCenter = (latBox[0] + latBox[1]) / 2.0
@@ -768,12 +814,14 @@ def safeParams(csvParams, numeric=False, integer=False):
    allParams = csvParams.split(",")
    params = []
    for param in allParams:
+      saniParam = utilsLite.sanitize(param)
+
       if (integer):
-         params.append(utilsLite.safeInt(utilsLite.sanitize(param)))
+         params.append(utilsLite.safeInt(saniParam))
       elif (numeric):
-         params.append(utilsLite.safeFloat(utilsLite.sanitize(param)))
+         params.append(utilsLite.safeFloat(saniParam))
       else:
-         params.append(utilsLite.sanitize(param))
+         params.append(saniParam)
 
    return(params)
 
@@ -790,6 +838,7 @@ def main():
    maxHeight = 5.0e3		# meters; use 1e6 for unlimited height, -1 for surface only
    runMode = "auto"
    userHourStride = None
+   gridLines = True		# show contour lines in a cage around the isosurfaces
 
    # default to CONUS
    latBounds = [25.0, 50.0]	# degrees
@@ -851,6 +900,9 @@ def main():
       if (pairValue[0].lower() == "airplane"):
          oneFlight = pairValue[1].split(",")
          airplanes.append(oneFlight)
+
+      if (pairValue[0].lower() == "grid"):
+         gridLines = (pairValue[1].lower() != "no")	# default is yes
 
    # Display the command-line arguments just received.
    progress("runMode = {}".format(runMode))
@@ -1031,6 +1083,7 @@ def main():
       # keep track of model complexity and algorithm
       cellCount = 0		# how many grid cells intersected any isosurface
       triangleCount = 0		# total number of 3D triangles used
+      lineCount = 0		# total number of multi-segment lines constructed
       markCount = 0		# total number of KML placemarks created
 
       # loop through dates and times
@@ -1065,14 +1118,16 @@ def main():
 
          # create a single 3-D visual at this frame time
          counts = createOneFrame(frame, frame + timeDelta, sphereFolders,
-            cellCount, triangleCount, markCount, waccmData,
+            cellCount, triangleCount, lineCount, markCount, waccmData,
             chemThresholds[chemIndex], minHeight, maxHeight,
-            stageDir, chemical)
+            stageDir, chemical, gridLines)
          cellCount = counts[0]
          triangleCount = counts[1]
-         markCount = counts[2]
-         progress("cell count = {}   triangle count = {}   placemark count = {}"
-            .format(cellCount, triangleCount, markCount))
+         lineCount = counts[2]
+         markCount = counts[3]
+         progress(
+            "cell count = {}   triangle count = {}   line count = {}   placemark count = {}"
+            .format(cellCount, triangleCount, lineCount, markCount))
 
          # move on to the next time frame
          frame += timeDelta
@@ -1081,8 +1136,9 @@ def main():
          #   break		# bogus
 
       progress("")
-      progress("Examined {} grid cells; created {} triangles and {} placemarks."
-         .format(cellCount, triangleCount, markCount))
+      progress(
+         "Examined {} grid cells; created {} triangles, {} lines, and {} placemarks."
+         .format(cellCount, triangleCount, lineCount, markCount))
       kmlDescription.text += ("Contains {} triangles and {} placemarks.\n"
          .format(triangleCount, markCount))
       kmlDescription.text += "Set terrain exaggeration = 3 in Google Earth."
@@ -1149,6 +1205,8 @@ def main():
             kmlDoc.append(dontShowKML)
             fixedPathKML = acomKml.createFixedPathStyle()
             kmlDoc.append(fixedPathKML)
+            outlineKML = acomKml.createOutlineStyle()
+            kmlDoc.append(outlineKML)
 
          # create airplane track and fixed path
          airplaneKMLs = shapes3D.createAirplaneTrack(

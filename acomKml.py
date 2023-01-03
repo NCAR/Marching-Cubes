@@ -120,6 +120,15 @@ def timeSpan(startUTC, endUTC, prefix=None):
 
 
 
+# Make sure that longitude is in range(-180, 180) for Google Earth.
+def wrapLongitude(rawLongitude):
+   if (rawLongitude <= 180.0):
+      return(rawLongitude)
+
+   return(rawLongitude - 360.0)
+
+
+
 # Create KML Placemark to be placed within a KML Document.
 # name = name of the placemark, or None if not supplied
 # modelId = numerical ID of 3-D Model tag
@@ -131,7 +140,7 @@ def timeSpan(startUTC, endUTC, prefix=None):
 # timeUTC = time that this placemark is valid
 # timeEndUtc = time that placemark is no longer displayed
 # heading = rotation right of due North
-def placemark(name, myId, latitude, longitude, altitude,
+def placemark(name, modelId, latitude, longitude, altitude,
    scaleX, scaleY, scaleZ, modelFile,
    timeUTC=None, timeEndUTC=None, heading=0):
    mark = ET.Element("Placemark")
@@ -142,7 +151,7 @@ def placemark(name, myId, latitude, longitude, altitude,
       mark.append(kmlName)
 
    #mark.append(camera(latitude - 0.01, longitude + 0.001, altitude - 200))
-   mark.append(model3d("model_{:07d}".format(myId),
+   mark.append(model3d("model_{:07d}".format(modelId),
       latitude, longitude, altitude, scaleX, scaleY, scaleZ,
       modelFile, heading))
 
@@ -158,6 +167,104 @@ def placemark(name, myId, latitude, longitude, altitude,
       mark.append(kmlTimeSpan)
 
    return(mark)
+
+
+
+# Display one WACCM surface as a 3-D set of triangles,
+# using the Placemark tag of Google Earth.
+# surfaceName = short identifying string
+# placeCount = integer used to create unique ID
+# latitude, longitude = horizontal location of 3D model
+# height = altitude of model in meters above sea level
+# value = chemical concentration of slab
+# startTime, endTime = time window in which slab is visible
+# chemColorValues = minimum concentrations for green, yellow, and red
+# heading = rotation right of due North
+# return the KML placemark created
+def renderSurfaceKML(surfaceName, placeCount,
+   latitude, longitude, height,
+   value, startTime, endTime,
+   chemColorValues, heading=0):
+
+   myMark = placemark(surfaceName, placeCount,
+      latitude, wrapLongitude(longitude), height,
+      1.0, 1.0, 1.0,            # scale X Y Z
+      "{}.dae".format(surfaceName),
+      startTime, endTime, heading)
+
+   return(myMark)
+
+
+
+# Create KML LineString Placemark to be placed within a KML Document.
+# These are 3D lines that outline an isosurface (contours).
+# name = name of the placemark, or None if not supplied
+# outlineId = numerical ID of placemark
+# multiLines = list of 3D lines, each with multiple segments
+# timeUTC = time that this placemark is valid
+# timeEndUtc = time that placemark is no longer displayed
+def placemarkLines(name, outlineId, multiLines = [],
+   timeUTC=None, timeEndUTC=None):
+   mark = ET.Element("Placemark")
+   mark.set("id", "outline_{:07d}".format(outlineId))
+
+   if (name is not None):
+      kmlName = ET.Element("name")
+      kmlName.text = name
+      mark.append(kmlName)
+
+   # set up for line styling
+   styleKML = kmlElement("styleUrl", "#outline")
+   mark.append(styleKML)
+
+   if ((timeUTC is not None) and (timeEndUTC is None)):
+      # just one time supplied
+      kmlTimeStamp = ET.Element("TimeStamp")
+      kmlTimeStamp.append(kmlElement("when", timeUTC.strftime("%Y-%m-%dT%H:%M:%SZ")))
+      mark.append(kmlTimeStamp)
+
+   if ((timeUTC is not None) and (timeEndUTC is not None)):
+      # begin and end times are supplied
+      kmlTimeSpan = timeSpan(timeUTC, timeEndUTC)
+      mark.append(kmlTimeSpan)
+
+   return(mark)
+
+
+
+# Display one grid as a 3-D set of LineStrings,
+# using the Placemark tag of Google Earth.
+# surfaceName = short identifying string
+# placeCount = integer used to create unique ID
+# multiLines = list of 3D lines, each with multiple segments
+# startTime, endTime = time window in which slab is visible
+# return the KML placemark created
+def renderGridKML(surfaceName, placeCount, multiLines,
+   startTime, endTime):
+
+   myMark = placemarkLines(surfaceName, placeCount,
+      multiLines, startTime, endTime)
+
+   # add MultiGeometry and the LineStrings
+   multiGeo = kmlElement("MultiGeometry")
+   myMark.append(multiGeo)
+
+   for oneLine in multiLines:
+      # set up one multi-segment LineString
+      myLine = kmlElement("LineString")
+      myLine.append(kmlElement("altitudeMode", "absolute"))
+
+      # populate the LineString with coordinates
+      allCoordinates = ""
+      for oneVertex in oneLine:
+         # no spaces between coordinates!
+         allCoordinates += ("{},{},{}\n".format(oneVertex.x, oneVertex.y, oneVertex.z))
+      coordKML = kmlElement("coordinates", allCoordinates)
+      myLine.append(coordKML)
+
+      multiGeo.append(myLine)
+
+   return(myMark)
 
 
 
@@ -649,4 +756,20 @@ def createFlightTour(flightName, flightDescription,
       flyTo.append(camera)
 
    return(tour)
+
+
+
+# Create style for gridded outline of isosurface.
+def createOutlineStyle():
+   styleKML = kmlElement("Style")
+   styleKML.set("id", "outline")
+
+   lineStyle = kmlElement("LineStyle")
+   width = kmlElement("width", "1")	# pixels
+   lineStyle.append(width)
+   color = kmlElement("color", "ffffffff")	# 100% opaque white
+   lineStyle.append(color)
+
+   styleKML.append(lineStyle)
+   return(styleKML)
 

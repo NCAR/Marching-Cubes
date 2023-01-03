@@ -1,0 +1,3 @@
+cd /home/drews/GoogleEarth/
+python3 bushFires.py model=WACCM species=CO latBounds=25.0,45.0 lonBounds=120.0,160.0 dates=20220819,20220820 hours=00,00 runMode=manual minHeight=0 maxHeight=20000 thresholds=30,50,70 airplane=GV,/home/drews/ACCLIP/data/ACCLIP-60SEC_GV_20220819_RA_rf08.nc airplane=WB57,/home/drews/ACCLIP/data/ACCLIP-60SEC_WB57_20220819_RA_rf10.nc grid=yes
+echo

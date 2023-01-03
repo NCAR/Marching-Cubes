@@ -44,6 +44,7 @@ class WrfChemModel(Model4D.AtmosModel):
       # apply suffix for regional extractions
       if (False):
          suffix = "_SouthCA.nc"		# Los Angeles NASA/JPL
+         #suffix = ".nc"			# NCAR RDA
          nameOnly += suffix
 
       # if requested date is a forecast, look in today's sub-directory instead
