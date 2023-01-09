@@ -1139,9 +1139,13 @@ def main():
       progress(
          "Examined {} grid cells; created {} triangles, {} lines, and {} placemarks."
          .format(cellCount, triangleCount, lineCount, markCount))
-      kmlDescription.text += ("Contains {} triangles and {} placemarks.\n"
-         .format(triangleCount, markCount))
-      kmlDescription.text += "Set terrain exaggeration = 3 in Google Earth."
+      kmlDescription.text += ("Contains {} triangles, {} lines, and {} placemarks.\n"
+         .format(triangleCount, lineCount, markCount))
+      kmlDescription.text += "Set terrain exaggeration = 3 in Google Earth.\n"
+      kmlDescription.text += ("Nominal minHeight = {} maxHeight = {} meters.\n"
+         .format(minHeight, maxHeight))
+      kmlDescription.text += ("Thresholds for {} are {} {}."
+         .format(chemical, chemThresholds[chemIndex], units))
 
       # create a folder for the colorbar
       colorbarFolder = acomKml.folder("Colorbar")
