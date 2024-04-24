@@ -1,5 +1,17 @@
 cd /home/drews/GoogleEarth/
 python3 bushFires.py maxHeight=4000
-echo
-#python3 bushFires.py maxHeight=4000 dates=20210531,20210602, hours=22,22 latBounds=38.0,41.0 lonBounds=-107.0,-104.0 runMode=manual
-#
+
+echo "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+
+# Move KMZ output to web-accessible directory.
+year=`date +\%Y`
+echo "Year = $year"
+yesterday=`date --date="yesterday" +\%Y\%m\%d`
+echo "Yesterday = $yesterday"
+tomorrow=`date --date="tomorrow" +\%Y\%m\%d`
+echo "Tomorrow = $tomorrow"
+cmd="cp daily/Auto-o3-${yesterday}to${tomorrow}.kmz"
+cmd+=" /FIREX-AQ/webt/firex-aq/Evaluation/KMZ/$year/"
+echo $cmd
+echo `$cmd`
+date

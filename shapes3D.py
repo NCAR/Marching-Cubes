@@ -50,10 +50,10 @@ def createAirParcel(parcelName, saveDir):
    zSpan = 1.0          # km
 
    if (True):
-      # bogus - make parcels large enough to see
-      xSpan *= 10
-      ySpan *= 10
-      zSpan *= 50
+      # make parcels large enough to see
+      xSpan *= 2
+      ySpan *= 2
+      zSpan *= 10
 
    # 3D shape origin will be at center of the solid body
    radiusX = xSpan / 2.0
@@ -105,7 +105,7 @@ def createAirParcel(parcelName, saveDir):
 
    orange = [1.0, 0.647, 0.0, 1.0]
    blue = [0.0, 0.0, 1.0, 1.0]
-   daeColor = blue
+   daeColor = orange
    utilsCollada.writeDAEfile(triangles, daeColor, 0.0, filepath)
 
    return(filename)
@@ -227,10 +227,11 @@ def createAirplaneTrack(planeName, planeModel, trackFile,
       altitudes = [900, 5000]	# meters above sea level
 
    progress("trackFile = {}".format(trackFile))
+   progress("verticalExaggeration = {}".format(verticalExaggeration))
 
    # there are no standard variable names within NetCDF flight tracks
    latLonAlt = ["GGLAT", "GGLON", "GGALT"]	# NASA DC-8
-   if (planeName == "GV"):
+   if ((planeName == "GV") or (planeName == "HIAPER-GV")):
       latLonAlt = ["LATC", "LONC", "GGALT"]	# NSF/NCAR HIAPER Gulfstream 5
    if (planeName == "WB57"):
       latLonAlt = ["G_LAT_MMS", "G_LONG_MMS", "G_ALT_MMS"]	# NASA WB-57
@@ -250,6 +251,11 @@ def createAirplaneTrack(planeName, planeModel, trackFile,
    lons = flightParts[2]
    altitudes = numpy.array(flightParts[3], dtype="float")
 
+   # Apply the vertical exaggeration (below) to altitudes here instead
+   # if your aiplane flight path is not supposed to match terrain.
+   if (True):
+      altitudes *= verticalExaggeration
+
    # Google Earth tracks and paths are already exaggerated.
    trackKML = acomKml.createModelMoving(
       planeName, "Flight of research aircraft.",
@@ -259,10 +265,11 @@ def createAirplaneTrack(planeName, planeModel, trackFile,
 
    pathKML = acomKml.createFixedPath(
       planeName + " flight path", "Flight path of research aircraft.",
-      lats, lons, altitudes)
+      lats, lons, altitudes, "fixedPath01")
 
    # Apply terrain exaggeration to tour height.
-   altitudes *= verticalExaggeration
+   if (False):
+      altitudes *= verticalExaggeration
 
    tourKML = acomKml.createFlightTour(
       planeName + " tour", "Tour along the flight path.",
@@ -394,11 +401,12 @@ def readNetCDFFlight(trackFileNc, timeStep=5*60,
 
    flightData.close()
 
-   progress("navTimesAll = {}".format(navTimesAll))
-   progress("navLatsAll = {}".format(navLatsAll))
-   progress("navLonsAll = {}".format(navLonsAll))
-   progress("navHeightsAll = {}; {} to {}"
-      .format(navHeightsAll, navHeightsAll.min(), navHeightsAll.max()))
+   if (False):
+      progress("navTimesAll = {}".format(navTimesAll))
+      progress("navLatsAll = {}".format(navLatsAll))
+      progress("navLonsAll = {}".format(navLonsAll))
+      progress("navHeightsAll = {}; {} to {}"
+         .format(navHeightsAll, navHeightsAll.min(), navHeightsAll.max()))
 
    navTimes = []
    navLats = []

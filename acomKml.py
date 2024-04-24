@@ -497,9 +497,11 @@ def createModelMoving(modelName, modelDescription, modelFile,
 
 
 # Create style for airplane flight path.
-def createFixedPathStyle():
+# styleID = ID for this style
+# styleColor = ABGR value like "ccffff00"	# 80% opaque cyan
+def createFixedPathStyle(styleID, styleColor):
    styleKML = kmlElement("Style")
-   styleKML.set("id", "fixedPath")
+   styleKML.set("id", styleID)
 
    iconStyle = kmlElement("IconStyle")
    iconStyle.set("id", "fixedPathStyle")
@@ -514,7 +516,7 @@ def createFixedPathStyle():
    lineStyle = kmlElement("LineStyle")
    width = kmlElement("width", "2")
    lineStyle.append(width)
-   color = kmlElement("color", "ccffff00")	# 80% opaque cyan
+   color = kmlElement("color", styleColor)
    lineStyle.append(color)
 
    styleKML.append(iconStyle)
@@ -529,9 +531,10 @@ def createFixedPathStyle():
 # pathName = name for the enclosing placemark
 # pathDescription = text description of placemark
 # lats[], lons[], altitudes[] = arrays of coordinates same size as times[]
+# styleID = line style for this path
 # return KML section for inclusion in some folder
 def createFixedPath(pathName, pathDescription,
-   lats, lons, altitudes):
+   lats, lons, altitudes, styleID):
 
    # create the enclosing Placemark
    mark = kmlElement("Placemark")
@@ -546,7 +549,7 @@ def createFixedPath(pathName, pathDescription,
    mark.append(visibility)
 
    # set up for line styling
-   styleKML = kmlElement("styleUrl", "#fixedPath")
+   styleKML = kmlElement("styleUrl", "#{}".format(styleID))
    mark.append(styleKML)
 
    # create the path as a LineString
@@ -612,19 +615,15 @@ def populateCamera(atLat, atLon, atAlt, heading):
 # whens[] = date-time stamps of tour waypoints
 # lats[], lons[], alts[] = waypoint locations
 # ranges[], headings[], tilts[] = wapoint views
-# duration = how many seconds this tour should take
+# durations[] = how many seconds this segment should take
+# waits[] = seconds to hold still after each segment
 def createHoverTour(myFolder, whens,
    lats, lons, alts,
    ranges, headings, tilts,
-   duration):
+   durations, waits):
 
    numWaypoints = len(whens)
    progress("Hover tour numWaypoints = {}".format(numWaypoints))
-
-   # set up the time intervals
-   firstTimeStep = 2.0	# seconds in wall-clock time
-   timeStep = (duration - firstTimeStep) / (numWaypoints - 1)
-   progress("timeStep = {}, then {} seconds".format(firstTimeStep, timeStep))
 
    # set up the flying tour
    tour = kmlElement("gx:Tour")
@@ -644,17 +643,16 @@ def createHoverTour(myFolder, whens,
    tour.append(playlist)
 
    firstWaypoint = True
-   for when, lat, lon, alt, range, heading, tilt \
-      in zip(whens, lats, lons, alts, ranges, headings, tilts):
+   for when, lat, lon, alt, range, heading, tilt, duration, wait \
+      in zip(whens, lats, lons, alts, ranges, headings, tilts, durations, waits):
       flyTo = kmlElement("gx:FlyTo")
       playlist.append(flyTo)
 
+      flyTo.append(kmlElement("gx:duration", "{}".format(duration)))
       if (firstWaypoint):
-         flyTo.append(kmlElement("gx:duration", "{}".format(firstTimeStep)))
          flyTo.append(kmlElement("gx:flyToMode", "bounce"))
          firstWaypoint = False
       else:
-         flyTo.append(kmlElement("gx:duration", "{}".format(timeStep)))
          flyTo.append(kmlElement("gx:flyToMode", "smooth"))
 
       lookAt = populateLookAt(
@@ -666,6 +664,12 @@ def createHoverTour(myFolder, whens,
       lookAt.append(timeStamp)
 
       flyTo.append(lookAt)
+
+      if (wait > 0):
+         waitHere = kmlElement("gx:Wait")
+         waitHere.append(kmlElement("gx:duration",
+            "{}".format(wait)))		# seconds in real time
+         playlist.append(waitHere)
 
    return
 
@@ -772,4 +776,100 @@ def createOutlineStyle():
 
    styleKML.append(lineStyle)
    return(styleKML)
+
+
+
+# Create folder containing various measuring sticks.
+# myFolder = place the KML rulers within here
+# latBox, lonBox = domain in which to measure
+# imageFile = .PNG image file with grid and labels
+# terrainExaggeration = multiplier for terrain height in Google Earth
+def createRulers(myFolder, latBox, lonBox, imageFile,
+   terrainExaggeration=3):
+   overlay = kmlElement("GroundOverlay")
+   myFolder.append(overlay)
+
+   overlayAltitude = 3000       # meters above sea level
+   imageFile = "3000metersAltitude.png"
+
+   # add overlay name and useful instructions
+   name = kmlElement("name",
+      "Show altitude of 3000 meters above sea level.")
+   overlay.append(name)
+
+   descrip = kmlElement("description",
+      "Height includes 3x terrain exaggeration."
+      + " Use Properties -> Altitude -> slider to adjust altitude,"
+      + " or enter number directly.")
+   overlay.append(descrip)
+
+   # begin with height overlay turned off
+   visibility = kmlElement("visibility", "0")
+   overlay.append(visibility)
+
+   # initial altitude and mode
+   altKml = kmlElement("altitude", "{}"
+      .format(overlayAltitude * terrainExaggeration))
+   overlay.append(altKml)
+
+   modeKml = kmlElement("altitudeMode", "absolute")
+   overlay.append(modeKml)
+
+   # lat-lon bounding box
+   latLonBox = kmlElement("LatLonBox")
+   south = kmlElement("south", "{}".format(latBox[0]))
+   north = kmlElement("north", "{}".format(latBox[1]))
+   west = kmlElement("west", "{}".format(lonBox[0]))
+   east = kmlElement("east", "{}".format(lonBox[1]))
+
+   latLonBox.append(south)
+   latLonBox.append(north)
+   latLonBox.append(west)
+   latLonBox.append(east)
+
+   overlay.append(latLonBox)
+
+   # the overlay image itself
+   icon = kmlElement("Icon")
+   overlay.append(icon)
+   href = kmlElement("href", imageFile)
+   icon.append(href)
+
+   # transparency
+   color = kmlElement("color", "60ffffff")
+   overlay.append(color)
+
+   return
+
+
+
+# Create FlyTo section with camera LookAt sub-section.
+# duration = seconds to take, in real time
+# return constructed KML fragment
+def createFlyToLookAt(duration=4, flyMode="smooth",
+   arriveWhen=datetime.datetime.utcnow(),
+   latitude=40.01, longitude=-105.3, altitude=5e5,
+   flightRange=1.2e5, heading=30, tilt=75,
+   altMode="absolute"):
+
+   flyTo = kmlElement("gx:FlyTo")
+   flyTo.append(kmlElement("gx:duration", "{}".format(duration)))
+   flyTo.append(kmlElement("gx:flyToMode", flyMode))
+
+   lookAt = kmlElement("LookAt")
+   when = kmlElement("gx:TimeStamp")
+   lookAt.append(when)
+   when.append(kmlElement("when",
+      arriveWhen.strftime("%Y-%m-%dT%H:%M:%SZ")))
+
+   lookAt.append(kmlElement("latitude", "{}".format(latitude)))
+   lookAt.append(kmlElement("longitude", "{}".format(longitude)))
+   lookAt.append(kmlElement("altitude", "{}".format(altitude)))
+   lookAt.append(kmlElement("range", "{}".format(flightRange)))
+   lookAt.append(kmlElement("heading", "{}".format(heading)))
+   lookAt.append(kmlElement("tilt", "{}".format(tilt)))
+   lookAt.append(kmlElement("altitudeMode", altMode))
+
+   flyTo.append(lookAt)
+   return(flyTo)
 

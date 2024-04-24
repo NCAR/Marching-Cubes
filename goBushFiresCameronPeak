@@ -1,0 +1,5 @@
+cd /home/drews/GoogleEarth/
+#python3 bushFires.py model=WRF-Chem species=co_fire latBounds=39.0,41.0 lonBounds=-109.05,-102.05 dates=20200905,20200909 hours=16,00 dataDir=/webt/drews/GoogleEarth/CameronPeakFire2020/ runMode=manual maxHeight=20000
+#python3 bushFires.py model=WRF-Chem species=co_fire latBounds=39.0,41.0 lonBounds=-109.05,-102.05 dates=20200905,20200906 hours=16,00 dataDir=/webt/drews/GoogleEarth/CameronPeakFire2020/ runMode=manual
+python3 bushFires.py model=WRF-Chem species=co_fire latBounds=39.0,41.0 lonBounds=-109.05,-102.05 dates=20200908,20200908 hours=00,00 dataDir=/webt/drews/GoogleEarth/CameronPeakFire2020/ runMode=manual maxHeight=20000
+echo

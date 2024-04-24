@@ -743,68 +743,6 @@ def createFlight(myFolder, startWhen, endWhen, latBox, lonBox,
 
 
 
-# Create folder containing various measuring sticks.
-# myFolder = place the tour within here
-# latBox, lonBox = domain in which to measure
-# imageFile = .PNG image file with grid and labels
-def createRulers(myFolder, latBox, lonBox, imageFile):
-   overlay = acomKml.kmlElement("GroundOverlay")
-   myFolder.append(overlay)
-
-   overlayAltitude = 3000	# meters above sea level
-   imageFile = "3000metersAltitude.png"
-
-   # add overlay name and useful instructions
-   name = acomKml.kmlElement("name",
-      "Show altitude of 3000 meters above sea level.")
-   overlay.append(name)
-
-   descrip = acomKml.kmlElement("description",
-      "Height includes 3x terrain exaggeration."
-      + " Use Properties -> Altitude -> slider to adjust altitude,"
-      + " or enter number directly.")
-   overlay.append(descrip)
-
-   # begin with height overlay turned off
-   visibility = acomKml.kmlElement("visibility", "0")
-   overlay.append(visibility)
-
-   # initial altitude and mode
-   altKml = acomKml.kmlElement("altitude", "{}"
-      .format(overlayAltitude * terrainExaggeration))
-   overlay.append(altKml)
-
-   modeKml = acomKml.kmlElement("altitudeMode", "absolute")
-   overlay.append(modeKml)
-
-   # lat-lon bounding box
-   latLonBox = acomKml.kmlElement("LatLonBox")
-   south = acomKml.kmlElement("south", "{}".format(latBox[0]))
-   north = acomKml.kmlElement("north", "{}".format(latBox[1]))
-   west = acomKml.kmlElement("west", "{}".format(lonBox[0]))
-   east = acomKml.kmlElement("east", "{}".format(lonBox[1]))
-
-   latLonBox.append(south)
-   latLonBox.append(north)
-   latLonBox.append(west)
-   latLonBox.append(east)
-
-   overlay.append(latLonBox)
-
-   # the overlay image itself
-   icon = acomKml.kmlElement("Icon")
-   overlay.append(icon)
-   href = acomKml.kmlElement("href", imageFile)
-   icon.append(href)
-
-   # transparency
-   color = acomKml.kmlElement("color", "60ffffff")
-   overlay.append(color)
-
-   return
-
-
-
 # Return a safe list of comma-separated command-line arguments.
 # csvParams = with no spaces: 123.4,abc,today
 # numeric = convert params to floating-point
@@ -1163,6 +1101,7 @@ def main():
 
       # create customized hover tour
       if (True):
+         # Williams Flats Fire
          hoverStart = datetime.datetime(2019, 8, 8, 23, 50)
          hover2 = datetime.datetime(2019, 8, 9, 1, 00)
          hover3 = datetime.datetime(2019, 8, 9, 2, 00)
@@ -1175,7 +1114,8 @@ def main():
             [200000, 200000, 180000, 150000],		# range
             [100, 30, 340, 300],			# heading
             [70, 65, 65, 65],				# tilt
-            25)						# duration (seconds)
+            [4, 7, 7, 7],				# duration (seconds)
+            [0, 0, 0, 0])
 
       # create a folder for rulers that show altitude and other measurements
       if (True):
@@ -1186,7 +1126,8 @@ def main():
          actualLonBounds = [waccmData[2].min(), waccmData[2].max()]
          progress("actualLatBounds = {}".format(actualLatBounds))
          progress("actualLonBounds = {}".format(actualLonBounds))
-         createRulers(rulerFolder, actualLatBounds, actualLonBounds, imageFilename)
+         acomKml.createRulers(rulerFolder, actualLatBounds, actualLonBounds,
+            imageFilename, terrainExaggeration)
          shutil.copy(imageFilename, stageDir)
 
       # set up for research flight paths
@@ -1207,7 +1148,7 @@ def main():
          if (firstFlight):
             dontShowKML = acomKml.createDontShowStyle(idStr="airplane", lineWidth=5)
             kmlDoc.append(dontShowKML)
-            fixedPathKML = acomKml.createFixedPathStyle()
+            fixedPathKML = acomKml.createFixedPathStyle("fixedPath", "ccffff00")
             kmlDoc.append(fixedPathKML)
             outlineKML = acomKml.createOutlineStyle()
             kmlDoc.append(outlineKML)

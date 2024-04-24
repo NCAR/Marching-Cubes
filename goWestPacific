@@ -1,0 +1,5 @@
+cd /home/drews/GoogleEarth/
+#python3 westPacific.py
+#python3 westPacific.py airplane=HIAPER-GV,/home/drews/ACCLIP/CONTRAST-1SECOND-MERGE_GV_20140128_R0_rf07.nc
+python3 westPacific.py airplane=HIAPER-GV,/home/drews/ACCLIP/data/ACCLIP-60SEC_GV_20220819_RA_rf08.nc
+echo

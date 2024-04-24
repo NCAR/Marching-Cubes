@@ -51,8 +51,10 @@ class AtmosModel:
          return("CO fires")
       if (species.lower() == "extinctdn"):
          return("Aerosol extinction")
-      if (species.lower() == "CO"):
+      if (species.lower() == "co"):
          return("Carbon monoxide")
+      if (species.lower() == "co_bdry"):
+         return("CO boundary")
 
       return("ChemName???")
 
@@ -77,6 +79,8 @@ class AtmosModel:
          thresholds = [67, 70, 75]
       if (species.lower() == "co_fire"):
          thresholds = [200, 500, 1000]
+      if (species.lower() == "co"):
+         thresholds = [500, 700, 900]
 
       return([thresholds, units])
 
