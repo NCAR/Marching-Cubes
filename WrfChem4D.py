@@ -16,6 +16,7 @@ import netCDF4
 import wrf
 import numpy
 import math
+import os
 
 
 
@@ -353,6 +354,10 @@ class WrfChemModel(Model4D.AtmosModel):
          frameFile = self.BASE_DIRECTORY + self.getFilename(
             frameTime.year, frameTime.month, frameTime.day, frameTime.hour)
          self.progress("\tFrame file {}".format(frameFile))
+         if (not os.path.exists(frameFile)):
+            self.progress("\t\t...does not exist. Skipping.")
+            frameTime += timeStep
+            continue
 
          # open NetCDF file for reading
          wrfData = netCDF4.Dataset(frameFile)

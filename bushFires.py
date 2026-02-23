@@ -777,6 +777,7 @@ def main():
    runMode = "auto"
    userHourStride = None
    gridLines = True		# show contour lines in a cage around the isosurfaces
+   offsetDays = 0		# number of days added to today (use negative to back-fill)
 
    # default to CONUS
    latBounds = [25.0, 50.0]	# degrees
@@ -841,6 +842,8 @@ def main():
 
       if (pairValue[0].lower() == "grid"):
          gridLines = (pairValue[1].lower() != "no")	# default is yes
+      if (pairValue[0].lower() == "offset"):
+         offsetDays = utilsLite.safeInt(pairValue[1])
 
    # Display the command-line arguments just received.
    progress("runMode = {}".format(runMode))
@@ -856,6 +859,7 @@ def main():
    progress("hours = {}".format(hours))
 
    progress("dataDir = {}".format(dataDir))
+   progress("offset = {}".format(offsetDays))
 
    # Process the command-line arguments.
    useModel = WrfChem4D.WrfChemModel()
@@ -866,10 +870,11 @@ def main():
 
    if (dataDir is not None):
       useModel.setBaseDirectory(dataDir)
+   offset = datetime.timedelta(days=offsetDays)
 
    if (dates is None):
       # default time span is two days centered on right now
-      startDate = datetime.datetime.utcnow()
+      startDate = datetime.datetime.utcnow() + offset
       deltaHours = datetime.timedelta(hours=24)
       endDate = startDate + deltaHours
       startDate -= deltaHours
@@ -1027,17 +1032,17 @@ def main():
       # loop through dates and times
       frame = startDate
       units = "ppbv"
+      waccmData = None
 
       while (frame <= endDate):
          progress("\nFrame time: {}".format(frame))
-         waccmData = None
 
          # locate and open WACCM model output
          filename = (useModel.BASE_DIRECTORY
             + useModel.getFilename(frame.year, frame.month, frame.day,
             frame.hour, frame.minute))
          if (not os.path.exists(filename)):
-            progress("{} file {} does not exist."
+            progress("{} file {} does not exist. Skipping."
                .format(useModel.getModelName(), filename))
             frame += timeDelta
             continue
