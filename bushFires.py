@@ -22,6 +22,7 @@ import Model4D
 import Waccm4D
 import WrfChem4D
 import CamChem4D
+import Era4D
 
 import colorbar
 import subprocess
@@ -867,6 +868,8 @@ def main():
       useModel = Waccm4D.WaccmModel()
    if (model == "cam-chem"):
       useModel = CamChem4D.CamChemModel()
+   if (model == "era5"):
+      useModel = Era4D.EraModel()
 
    if (dataDir is not None):
       useModel.setBaseDirectory(dataDir)
