@@ -33,6 +33,19 @@ class CamChemModel(Waccm4D.WaccmModel):
    def getHourStride(self):
       return(1.0)
 
+   # calculate the previous day
+   # year, month, day = probably for the zero hour
+   #    (midnight) of forecast file
+   # return year, month, day for 24 hours earlier
+   def previousDay(self, year, month, day):
+      fileDate = datetime.datetime(year, month, day)
+      fileDate += datetime.timedelta(-1)
+      year = fileDate.year
+      month = fileDate.month
+      day = fileDate.day
+      return (year, month, day)
+
+   # get the filename for this date and time
    def getFilename(self, year, month, day, hour,
       minute=0):
       hourFloat = hour + minute/60.0
@@ -48,11 +61,7 @@ class CamChemModel(Waccm4D.WaccmModel):
 
       else:
          # the zero hour (midnight) is in the previous day
-         fileDate = datetime.datetime(year, month, day)
-         fileDate += datetime.timedelta(-1)
-         year = fileDate.year
-         month = fileDate.month
-         day = fileDate.day
+         year, month, day = self.previousDay(year, month, day)
          seconds = 66600
 
       return("b.e22.beta02.BWHIST.f09_g17.honga_tonga.so2_h2o25-35km_triplearea180Tg_5days.cam.h2.{:04d}-{:02d}-{:02d}-{:05d}.nc"
