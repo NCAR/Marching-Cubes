@@ -39,7 +39,7 @@ import shutil
 
 # Google Earth -> Tools -> Options -> 3D View -> Terrain -> Elevation Exaggeration
 terrainExaggeration = 3.0	# set within Google Earth
-#terrainExaggeration = 10.0	# Google Earth maximum exaggeration is 3
+#terrainExaggeration = 20.0	# Google Earth maximum exaggeration is 3
 heightExaggeration = 10.0	# set here for altitude of model slabs above terrain
 
 metersPerKm = 1000.0	# kilometers to meters

@@ -118,7 +118,7 @@ class Triangle:
       return(myNormals)
 
 
-   # Multiple the height to match Google Earth terrain exaggeration.
+   # Multiply the height to match Google Earth terrain exaggeration.
    def exaggerateHeight(self, altitudeFactor):
       for vertex in self.vertices:
          vertex.z *= altitudeFactor

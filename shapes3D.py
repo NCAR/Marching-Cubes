@@ -251,12 +251,12 @@ def createAirplaneTrack(planeName, planeModel, trackFile,
    lons = flightParts[2]
    altitudes = numpy.array(flightParts[3], dtype="float")
 
-   # Apply the vertical exaggeration (below) to altitudes here instead
-   # if your aiplane flight path is not supposed to match terrain.
-   if (True):
-      altitudes *= verticalExaggeration
+   # Tracks and paths are automatically exaggerated by Google Earth;
+   # apply your extra vertical exaggeration here.
+   exaggerationGoogleEarth = 3               # from GE -> Tools -> Options
+   altitudes *= (verticalExaggeration / exaggerationGoogleEarth)
 
-   # Google Earth tracks and paths are already exaggerated.
+   # create KML flight track
    trackKML = acomKml.createModelMoving(
       planeName, "Flight of research aircraft.",
       planeModel, trackTimes,
@@ -267,9 +267,9 @@ def createAirplaneTrack(planeName, planeModel, trackFile,
       planeName + " flight path", "Flight path of research aircraft.",
       lats, lons, altitudes, "fixedPath01")
 
-   # Apply terrain exaggeration to tour height.
-   if (False):
-      altitudes *= verticalExaggeration
+   # Tour heights are not exaggerated by Google Earth;
+   # apply the vertical exaggeration here set in GE Options.
+   altitudes *= exaggerationGoogleEarth
 
    tourKML = acomKml.createFlightTour(
       planeName + " tour", "Tour along the flight path.",
