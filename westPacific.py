@@ -904,10 +904,11 @@ def main():
    # create a folder for rulers that show altitude and other measurements
    if (True):
       imageFilename = "3000metersAltitude.png"
+      overlayHeight = 3000
       rulerFolder = acomKml.folder("Rulers")
       kmlDoc.append(rulerFolder)
       acomKml.createRulers(rulerFolder, latBounds, lonBounds,
-         imageFilename, terrainExaggeration)
+         imageFilename, overlayHeight, terrainExaggeration)
       shutil.copy(imageFilename, stageDir)
 
    # write the formatted kml file

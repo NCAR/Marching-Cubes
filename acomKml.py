@@ -783,18 +783,17 @@ def createOutlineStyle():
 # myFolder = place the KML rulers within here
 # latBox, lonBox = domain in which to measure
 # imageFile = .PNG image file with grid and labels
+# overlayAltitude = initial height of the ruler (meters above sea level)
 # terrainExaggeration = multiplier for terrain height in Google Earth
-def createRulers(myFolder, latBox, lonBox, imageFile,
+def createRulers(myFolder, latBox, lonBox,
+   imageFile="3000metersAltitude.png", overlayAltitude=3000,
    terrainExaggeration=3):
    overlay = kmlElement("GroundOverlay")
    myFolder.append(overlay)
 
-   overlayAltitude = 3000       # meters above sea level
-   imageFile = "3000metersAltitude.png"
-
    # add overlay name and useful instructions
    name = kmlElement("name",
-      "Show altitude of 3000 meters above sea level.")
+      f"Show altitude of {overlayAltitude} meters above sea level.")
    overlay.append(name)
 
    descrip = kmlElement("description",

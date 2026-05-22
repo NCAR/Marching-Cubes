@@ -1131,6 +1131,11 @@ def main():
       # create a folder for rulers that show altitude and other measurements
       if (True):
          imageFilename = "3000metersAltitude.png"
+         overlayHeight = 3000           # meters above sea level
+         if (True):
+            imageFilename = "9000metersAltitude.png"
+            overlayHeight = 9000           # meters above sea level
+
          rulerFolder = acomKml.folder("Rulers")
          kmlDoc.append(rulerFolder)
          actualLatBounds = [waccmData[1].min(), waccmData[1].max()]
@@ -1138,7 +1143,7 @@ def main():
          progress("actualLatBounds = {}".format(actualLatBounds))
          progress("actualLonBounds = {}".format(actualLonBounds))
          acomKml.createRulers(rulerFolder, actualLatBounds, actualLonBounds,
-            imageFilename, terrainExaggeration)
+            imageFilename, overlayHeight, terrainExaggeration)
          shutil.copy(imageFilename, stageDir)
 
       # set up for research flight paths
